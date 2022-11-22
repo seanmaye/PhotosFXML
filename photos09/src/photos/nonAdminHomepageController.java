@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class LoginScreenController {
+public class nonAdminHomepageController {
 	
 	@FXML
 	private TextField usernameField;
