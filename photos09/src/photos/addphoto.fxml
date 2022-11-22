@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="photos.AddPhotoController">
    <children>
       <ListView layoutX="45.0" layoutY="62.0" prefHeight="264.0" prefWidth="511.0" />
       <Text layoutX="234.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photo">
@@ -14,7 +14,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="238.0" layoutY="345.0" mnemonicParsing="false" text="Add Selected Photo" />
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="&lt;&lt;Cancel" />
+      <Button layoutX="238.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Selected Photo" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Cancel" />
    </children>
 </AnchorPane>
