@@ -18,22 +18,27 @@ public class LoginScreenController {
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
+	public static User currentUser;
 
 	public void login(ActionEvent e) throws IOException {
+		for(User user : AdminToolsController.getUserList()) {
+			if(user.getName().equals(usernameField.getText())) {
+				currentUser = user;
+				Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
+				stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+				scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
+		}
+		
 		if (usernameField.getText().compareTo("admin") == 0) {
+			currentUser = new User("admin");
 			Parent root = FXMLLoader.load(getClass().getResource("adminTools.fxml"));
 			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-		} else {
-
-			Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
-			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-
-		}
+		} 
 	}
 }
