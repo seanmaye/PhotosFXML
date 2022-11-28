@@ -14,7 +14,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <TextField layoutX="462.0" layoutY="218.0" prefHeight="26.0" prefWidth="111.0" promptText="Album Name" />
+      <TextField fx:id="albumField" layoutX="462.0" layoutY="218.0" prefHeight="26.0" prefWidth="111.0" promptText="Album Name" />
       <ListView layoutX="14.0" layoutY="91.0" prefHeight="280.0" prefWidth="436.0" />
       <Button layoutX="462.0" layoutY="257.0" mnemonicParsing="false" onAction="#createAlbum" prefHeight="35.0" prefWidth="111.0" text="Create Album" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Homepage" />

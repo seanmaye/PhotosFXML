@@ -2,17 +2,20 @@ package photos;
 
 import java.util.ArrayList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class User {
 	String name;
-	ArrayList<Album> users = new ArrayList<Album>();
+	ObservableList<Album> albums = FXCollections.observableArrayList();
 public User(String name) {
 	this.name=name;
 }
 public void addAlbum(Album album) {
-	users.add(album);
+	albums.add(album);
 }
 public void removePhoto(Album album) {
-	users.remove(album);
+	albums.remove(album);
 }
 public String getName() {
 	return name;
@@ -20,5 +23,8 @@ public String getName() {
 public String toString() {
 	return name;
 	
+}
+public ObservableList<Album> getAlbumList(){
+	return albums;
 }
 }

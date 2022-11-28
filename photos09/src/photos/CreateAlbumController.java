@@ -14,12 +14,13 @@ import javafx.stage.Stage;
 public class CreateAlbumController {
 	
 	@FXML
-	private TextField usernameField;
+	private TextField albumField;
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
 	
 	public void createAlbum(ActionEvent e) throws IOException {
+		LoginScreenController.currentUser.addAlbum(new Album(albumField.getText()));
 			Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
 			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
