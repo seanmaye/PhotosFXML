@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddPhotoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AddPhotoController">
    <children>
-      <ListView layoutX="45.0" layoutY="62.0" prefHeight="264.0" prefWidth="511.0" />
-      <Text layoutX="234.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photo">
+      <Text layoutX="217.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Photo">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="174.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Selected Photo" />
+      <Button layoutX="174.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Listed Photo" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Cancel" />
-      <Button layoutX="329.0" layoutY="345.0" mnemonicParsing="false" onAction="#uploadPhoto" text="Upload Photos" />
+      <Button layoutX="329.0" layoutY="345.0" mnemonicParsing="false" onAction="#uploadPhoto" text="Upload Photo" />
+      <ImageView fx:id="photoView" fitHeight="256.0" fitWidth="280.0" layoutX="45.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="nameField" alignment="TOP_LEFT" layoutX="373.0" layoutY="127.0" prefHeight="26.0" prefWidth="160.0" promptText="Enter Tag Name:" />
+      <TextField fx:id="valueField" layoutX="373.0" layoutY="242.0" promptText="Enter Tag Value:" />
    </children>
 </AnchorPane>

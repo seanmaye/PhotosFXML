@@ -21,6 +21,7 @@ public class CreateAlbumController {
 	private Parent root;
 	
 	public void createAlbum(ActionEvent e) throws IOException {
+		//check for duplication
 		LoginScreenController.currentUser.addAlbum(new Album(albumField.getText()));
 			Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
 			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

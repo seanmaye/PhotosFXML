@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,18 +18,24 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import photos.Photo;
 import photos.User;
 
 public class AddPhotoController {
-	
+
 	@FXML
 	private TextField usernameField;
 	@FXML
-	private ListView<ImageView> listView;
+	private ImageView photoView;
+	@FXML
+	private TextField nameField;
+	@FXML
+	private TextField valueField;
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
-	
+	ObservableList<ImageView> items = FXCollections.observableArrayList();
+
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -35,30 +43,33 @@ public class AddPhotoController {
 		stage.setScene(scene);
 		stage.show();
 
-}
-	public void uploadPhoto(ActionEvent e ) throws IOException{
+	}
+
+	public void uploadPhoto(ActionEvent e) throws IOException {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
-		FileChooser.ExtensionFilter fileExtension= new FileChooser.ExtensionFilter("Images", "*.bmp", "*.gif", "*.jpeg","*.png","*.jpg");
+		FileChooser.ExtensionFilter fileExtension = new FileChooser.ExtensionFilter("Images", "*.bmp", "*.gif",
+				"*.jpeg", "*.png", "*.jpg");
 		fileChooser.getExtensionFilters().add(fileExtension);
 		List<File> list = fileChooser.showOpenMultipleDialog(stage);
-		for(File file : list) {
-		Image image = new Image(file.toURI().toString());
-		
-		NonAdminHomepageController.passAlbum.addPhoto(null);
+		for (File file : list) {
+			Image image = new Image(file.toURI().toString());
+			photoView.setImage(image);
+
 		}
-		
-		System.out.println(list);
+
 	}
-public void addPhoto(ActionEvent e) throws IOException {
-	
-	Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
-	stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-	scene = new Scene(root);
-	stage.setScene(scene);
-	stage.show();
+
+	public void addPhoto(ActionEvent e) throws IOException {
+		Image image = photoView.getImage();
+		Photo toAdd = new Photo(image, "Caption","tagName","tagValue");
+		NonAdminHomepageController.passAlbum.addPhoto(toAdd);
+		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
+	}
 
 }
-
-	}
-

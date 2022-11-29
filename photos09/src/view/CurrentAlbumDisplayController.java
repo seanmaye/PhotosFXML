@@ -49,6 +49,7 @@ public class CurrentAlbumDisplayController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		date.setEditable(false);
+		if(photos.isEmpty() == false) {
 					imageView.setImage(photos.get(0).getImage());
 					caption.setText(photos.get(0).getCaption());
 					tags.setText(photos.get(0).getTags().get(0).getTagName());
@@ -62,6 +63,9 @@ public class CurrentAlbumDisplayController implements Initializable {
 				items.add(temp);
 			}
 			thumbnails.setItems(items);
+		}else {
+			textTitle.setText(NonAdminHomepageController.passAlbum.getName());
+		}
 	}
 	public void displaySong(MouseEvent e) throws IOException{
 		ImageView imageView = thumbnails.getSelectionModel().getSelectedItem();	
