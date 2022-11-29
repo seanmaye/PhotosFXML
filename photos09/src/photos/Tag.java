@@ -17,7 +17,7 @@ public class Tag {
 		return value;
 	}
 	
-	public String toStrong() {
+	public String toString() {
 		return name + ":" + value;
 	}
 }
