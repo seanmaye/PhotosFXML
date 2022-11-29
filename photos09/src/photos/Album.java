@@ -17,6 +17,10 @@ public void removePhoto(Photo photo) {
 public void setName(String name) {
 	this.name = name;
 }
+public void copymovePhoto(Photo photo, Album album) {
+	//this works for copy or move, will just make another pointer to this photo in whatever album
+	album.addPhoto(photo);
+}
 public String getName() {
 	return name;
 }

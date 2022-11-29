@@ -20,6 +20,10 @@ public void removePhoto(Album album) {
 public String getName() {
 	return name;
 }
+public void renameAlbum(Album album, String name) {
+	//we already have the pointer to this album right?
+	album.name = name;
+}
 public String toString() {
 	return name;
 	
