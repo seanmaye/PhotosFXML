@@ -9,11 +9,13 @@ public class Tag {
 	String name;
 	ObservableList<String> values = FXCollections.observableArrayList();
 	
+	//only for "location"
 	public Tag(String name, String value) {
 		this.name = name;
 		values.add(value);
 	}
 	
+	//for any other tag
 	public Tag(String name, ObservableList<String> values) {
 		this.name = name;
 		this.values = values;

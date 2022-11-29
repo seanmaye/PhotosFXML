@@ -21,7 +21,7 @@ public class Album {
 		photos.sort(new PhotoComparator());
 		numPhotos++;
 		firstDate = photos.get(0).date;
-		lastDate = photos.get(photos.size()-1).date;
+		lastDate = photos.get(photos.size() - 1).date;
 	}
 
 	public void removePhoto(Photo photo) {
@@ -35,7 +35,7 @@ public class Album {
 	public void copyPhoto(Photo photo, Album album) {
 		album.addPhoto(photo);
 	}
-	
+
 	public void movePhoto(Photo photo, Album album) {
 		album.addPhoto(photo);
 		photos.remove(photo);
