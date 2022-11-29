@@ -1,20 +1,24 @@
 package photos;
 
 import javafx.scene.image.Image;
+import java.util.*;
 
 import java.util.ArrayList;
 
 public class Photo {
 	Image image;
 	String caption;
-	//date???
+	Date date;
+	Calendar c = Calendar.getInstance();
 	ArrayList<Tag> tags = new ArrayList<Tag>();
 
 		public Photo(Image image,String caption, String tagName, String tagValue) {
-			//can these fields be blank at first?
 			this.image=image;
 			this.caption = caption;
 			tags.add(new Tag(tagName, tagValue));
+			c.set(Calendar.MILLISECOND, 0);
+			date = c.getTime();
+			
 		}
 		
 		public Image getImage() {
@@ -27,6 +31,10 @@ public class Photo {
 		
 		public void setCaption(String caption) {
 			this.caption = caption;
+		}
+		
+		public Date getDate() {
+			return date;
 		}
 		
 		public ArrayList<Tag> getTags() {
