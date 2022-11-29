@@ -20,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import photos.Photo;
@@ -36,16 +37,23 @@ public class CurrentAlbumDisplayController implements Initializable {
 	private TextArea caption;
 	@FXML
 	private TextArea tags;
+	@FXML
+	private TextField date;
+	@FXML
+	private Text textTitle;
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
 	ObservableList<ImageView> items = FXCollections.observableArrayList();
+	ArrayList<Photo> photos = NonAdminHomepageController.passAlbum.getPhotos();
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		ArrayList<Photo> photos = NonAdminHomepageController.passAlbum.getPhotos();
+		date.setEditable(false);
 					imageView.setImage(photos.get(0).getImage());
 					caption.setText(photos.get(0).getCaption());
 					tags.setText(photos.get(0).getTags().get(0).getTagName());
+					date.setText(photos.get(0).getDate().toString());
+					textTitle.setText(NonAdminHomepageController.passAlbum.getName());
 			for(int i=0; i<photos.size(); i++) {
 				ImageView temp = new ImageView(photos.get(i).getImage());
 				temp.setFitHeight(75);
@@ -57,8 +65,12 @@ public class CurrentAlbumDisplayController implements Initializable {
 	}
 	public void displaySong(MouseEvent e) throws IOException{
 		ImageView imageView = thumbnails.getSelectionModel().getSelectedItem();	
+		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		Image toDisplay = imageView.getImage();
 		this.imageView.setImage(toDisplay);
+		caption.setText(photos.get(0).getCaption());
+		tags.setText(photos.get(index).getTags().get(0).getTagName());
+		date.setText(photos.get(index).getDate().toString());
 		
 				}
 	public void goBack(ActionEvent e) throws IOException {

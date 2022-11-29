@@ -40,36 +40,18 @@ public class AdminToolsController implements Initializable {
 	private Stage stage;
 	private Parent root;
 	private static ObservableList<User> list = FXCollections.observableArrayList();
-	public static User stock = new User("Stock");
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		Album stockAlbum= new Album("Stock");
-		File folder = new File("StockImages");
-		List<String> fileList = listFileNames(folder);
-		for(int i=0; i<fileList.size(); i++) {
-		File file = new File("StockImages/"+fileList.get(i));
-		Photo photo = new Photo(new Image(file.toURI().toString()),"This is stock", "Stock","idk");
-		stockAlbum.addPhoto(photo);
-		}
-		stock.addAlbum(stockAlbum);
-		list.add(stock);
+		
+		
+		list = Photos.uapp.listUsers();
 		Collections.sort(list, Comparator.comparing(User::getName, String.CASE_INSENSITIVE_ORDER));
 		listView.setItems(list);
 	}
 
-	private List<String> listFileNames(File folder) throws NullPointerException{
-        List<String> list = new ArrayList<>();
-
-        for (File file : folder.listFiles()) {
-            if (file.isDirectory())
-                listFileNames(file);
-            else {
-                list.add(file.getName());
-            }
-        }
-        return list;
-    }
+	
 
 	public void createUser(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
@@ -80,7 +62,7 @@ public class AdminToolsController implements Initializable {
 
 		User newUser = new User(result.get());
 		
-		list.add(newUser);
+		Photos.uapp.addUser(newUser);
 
 		Parent root = FXMLLoader.load(getClass().getResource("adminTools.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

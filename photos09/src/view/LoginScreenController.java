@@ -22,7 +22,7 @@ public class LoginScreenController {
 	public static User currentUser;
 
 	public void login(ActionEvent e) throws IOException {
-		for(User user : AdminToolsController.getUserList()) {
+		for(User user : Photos.uapp.listUsers()) {
 			if(user.getName().equals(usernameField.getText())) {
 				currentUser = user;
 				Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
