@@ -1,4 +1,4 @@
-package photos;
+package view;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

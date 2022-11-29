@@ -1,4 +1,4 @@
-package photos;
+package view;
 
 import java.io.IOException;
 
@@ -11,31 +11,30 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class CreateAlbumController {
+public class AddPhotoController {
 	
 	@FXML
-	private TextField albumField;
+	private TextField usernameField;
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
 	
-	public void createAlbum(ActionEvent e) throws IOException {
-		LoginScreenController.currentUser.addAlbum(new Album(albumField.getText()));
-			Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
-			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-			scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-
-	}
 	public void goBack(ActionEvent e) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
 }
+public void addPhoto(ActionEvent e) throws IOException {
+	Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
+	stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+	scene = new Scene(root);
+	stage.setScene(scene);
+	stage.show();
+
 }
 
+	}
 

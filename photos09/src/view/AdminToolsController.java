@@ -1,4 +1,4 @@
-package photos;
+package view;
 
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +23,7 @@ import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
+import photos.User;
 
 
 public class AdminToolsController implements Initializable {

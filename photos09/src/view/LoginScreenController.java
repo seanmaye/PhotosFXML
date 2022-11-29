@@ -1,4 +1,4 @@
-package photos;
+package view;
 
 import java.io.IOException;
 
@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import photos.User;
 
 public class LoginScreenController {
 

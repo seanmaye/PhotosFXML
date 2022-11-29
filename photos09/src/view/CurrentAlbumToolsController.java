@@ -1,4 +1,4 @@
-package photos;
+package view;
 
 import java.io.IOException;
 import java.net.URL;
