@@ -8,13 +8,13 @@ public class Photo {
 	Image image;
 	String caption;
 	//date???
-	ArrayList<String> tags = new ArrayList<String>();
+	ArrayList<Tag> tags = new ArrayList<Tag>();
 
-		public Photo(Image image,String caption, String tag) {
+		public Photo(Image image,String caption, String tagName, String tagValue) {
 			//can these fields be blank at first?
 			this.image=image;
 			this.caption = caption;
-			tags.add(tag);
+			tags.add(new Tag(tagName, tagValue));
 		}
 		
 		public Image getImage() {
@@ -29,20 +29,15 @@ public class Photo {
 			this.caption = caption;
 		}
 		
-		public String getTags() {
-			//delineate and set as separate tags later?
-			String ret = "";
-			for(String tag: tags) {
-				ret = ret + tag + ",";
-			}
-			return ret;
+		public ArrayList<Tag> getTags() {
+			return tags;
 		}
 		
-		public void addTag(String tag) {
-			tags.add(tag);
+		public void addTag(String tagName, String tagValue) {
+			tags.add(new Tag(tagName, tagValue));
 		}
 		
-		public void deleteTag(String tag) {
+		public void deleteTag(Tag tag) {
 			tags.remove(tag);
 		}
 
