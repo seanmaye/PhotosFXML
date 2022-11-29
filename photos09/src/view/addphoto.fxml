@@ -14,7 +14,8 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="238.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Selected Photo" />
+      <Button layoutX="174.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Selected Photo" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Cancel" />
+      <Button layoutX="329.0" layoutY="345.0" mnemonicParsing="false" onAction="#uploadPhoto" text="Upload Photos" />
    </children>
 </AnchorPane>

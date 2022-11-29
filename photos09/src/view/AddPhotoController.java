@@ -1,6 +1,8 @@
 package view;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class AddPhotoController {
@@ -27,7 +30,14 @@ public class AddPhotoController {
 		stage.show();
 
 }
+	public void uploadPhoto(ActionEvent e ) throws IOException{
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
+		List<File> list = fileChooser.showOpenMultipleDialog(stage);
+		System.out.println(list);
+	}
 public void addPhoto(ActionEvent e) throws IOException {
+	
 	Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 	stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 	scene = new Scene(root);

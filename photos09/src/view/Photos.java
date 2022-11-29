@@ -1,10 +1,14 @@
 package view;
 
+import java.util.List;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import photos.Album;
+import photos.User;
 
 public class Photos extends Application {
 
@@ -14,7 +18,8 @@ public class Photos extends Application {
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 	}
-
+	
+	
 	public static void main(String[] args) {
 		launch(args);
 	}

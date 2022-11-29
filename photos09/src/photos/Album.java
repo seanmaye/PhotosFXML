@@ -28,4 +28,7 @@ public String toString() {
 	return name;
 	
 }
+public ArrayList<Photo> getPhotos(){
+	return photos;
+}
 }

@@ -1,10 +1,12 @@
 package view;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -22,8 +24,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import photos.Album;
+import photos.Photo;
 import photos.User;
+import photos.UserApp;
 
 
 public class AdminToolsController implements Initializable {
@@ -34,12 +40,36 @@ public class AdminToolsController implements Initializable {
 	private Stage stage;
 	private Parent root;
 	private static ObservableList<User> list = FXCollections.observableArrayList();
-
+	public static User stock = new User("Stock");
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		Album stockAlbum= new Album("Stock");
+		File folder = new File("StockImages");
+		List<String> fileList = listFileNames(folder);
+		for(int i=0; i<fileList.size(); i++) {
+		File file = new File("StockImages/"+fileList.get(i));
+		Photo photo = new Photo(new Image(file.toURI().toString()),"This is stock", "Stock","idk");
+		stockAlbum.addPhoto(photo);
+		}
+		stock.addAlbum(stockAlbum);
+		list.add(stock);
 		Collections.sort(list, Comparator.comparing(User::getName, String.CASE_INSENSITIVE_ORDER));
 		listView.setItems(list);
 	}
+
+	private List<String> listFileNames(File folder) throws NullPointerException{
+        List<String> list = new ArrayList<>();
+
+        for (File file : folder.listFiles()) {
+            if (file.isDirectory())
+                listFileNames(file);
+            else {
+                list.add(file.getName());
+            }
+        }
+        return list;
+    }
 
 	public void createUser(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
@@ -49,7 +79,7 @@ public class AdminToolsController implements Initializable {
 		Optional<String> result = td.showAndWait();
 
 		User newUser = new User(result.get());
-
+		
 		list.add(newUser);
 
 		Parent root = FXMLLoader.load(getClass().getResource("adminTools.fxml"));

@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,6 +22,7 @@ public class CurrentAlbumToolsController implements Initializable {
 	private TextField albumnameField;
 	@FXML
 	private Text titleText;
+	
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
@@ -28,6 +30,8 @@ public class CurrentAlbumToolsController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		titleText.setText(NonAdminHomepageController.passAlbum.toString()+" Tools");
 		albumnameField.setText(NonAdminHomepageController.passAlbum.toString());
+	
+		//this would all be changed to user stuff when that is implemented
 	}
 	public void goBack(ActionEvent e) throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
