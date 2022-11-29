@@ -29,10 +29,13 @@ public class Album {
 		this.name = name;
 	}
 
-	public void copymovePhoto(Photo photo, Album album) {
-		// this works for copy or move, will just make another pointer to this photo in
-		// whatever album
+	public void copyPhoto(Photo photo, Album album) {
 		album.addPhoto(photo);
+	}
+	
+	public void movePhoto(Photo photo, Album album) {
+		album.addPhoto(photo);
+		photos.remove(photo);
 	}
 
 	public String getName() {
