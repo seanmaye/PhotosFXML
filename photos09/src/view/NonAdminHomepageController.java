@@ -15,11 +15,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import photos.Album;
+import photos.Photo;
 
 public class NonAdminHomepageController implements Initializable {
 	
@@ -57,12 +60,20 @@ public class NonAdminHomepageController implements Initializable {
 
 }
 	public void select(ActionEvent e) throws IOException {
+		if(listView.getSelectionModel().getSelectedItem()==null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Album not selected");
+			alert.showAndWait();
+		}else {
 		passAlbum= listView.getSelectionModel().getSelectedItem();
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumTools.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		}
+		
 
 }
 	public void logOut(ActionEvent e) throws IOException {

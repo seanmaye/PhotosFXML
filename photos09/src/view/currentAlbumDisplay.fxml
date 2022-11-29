@@ -18,7 +18,7 @@
       </Text>
       <ListView fx:id="thumbnails" layoutX="21.0" layoutY="91.0" onMouseClicked="#displaySong" prefHeight="263.0" prefWidth="77.0" />
       <Button layoutX="463.0" layoutY="91.0" mnemonicParsing="false" onAction="#addPhoto" prefHeight="26.0" prefWidth="97.0" text="Add Photo" />
-      <Button layoutX="463.0" layoutY="166.0" mnemonicParsing="false" text="Remove Photo" />
+      <Button layoutX="463.0" layoutY="166.0" mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />
       <Button layoutX="463.0" layoutY="236.0" mnemonicParsing="false" onAction="#copyMove" prefHeight="45.0" prefWidth="97.0" text="Copy/Move &#10;Photo" textAlignment="CENTER" />
       <Button layoutX="463.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="97.0" text="Slide Show" />
       <TextArea fx:id="tags" layoutX="357.0" layoutY="241.0" prefHeight="114.0" prefWidth="97.0" promptText="tags" />

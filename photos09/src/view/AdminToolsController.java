@@ -71,6 +71,17 @@ public class AdminToolsController implements Initializable {
 		stage.show();
 
 	}
+	
+	public void deleteUser(ActionEvent e) throws IOException {
+		User toDelete = listView.getSelectionModel().getSelectedItem();	
+		Photos.uapp.deleteUser(toDelete);
+		Parent root = FXMLLoader.load(getClass().getResource("adminTools.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
+	}
 
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
