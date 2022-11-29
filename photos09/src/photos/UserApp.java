@@ -40,8 +40,7 @@ public class UserApp implements Serializable{
 	public static void writeApp(UserApp uapp) throws IOException {
 		ObjectOutputStream oos = new ObjectOutputStream(
 				new FileOutputStream(storeDir + File.separator + storeFile));
-		//doesn't allow duplicates, so just write every time program ends
-		//oos.writeObject(uapp);
+		oos.writeObject(uapp);
 		oos.close();
 	}
 	
@@ -54,4 +53,3 @@ public class UserApp implements Serializable{
 	}
 	
 }
-//commenting so i can commit??
