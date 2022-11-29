@@ -2,9 +2,12 @@ package photos;
 
 import java.util.*;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Album {
 	String name;
-	ArrayList<Photo> photos = new ArrayList<Photo>();
+	ObservableList<Photo> photos = FXCollections.observableArrayList();
 	int numPhotos = 0;
 	Date firstDate;
 	Date lastDate;
@@ -47,7 +50,7 @@ public class Album {
 
 	}
 
-	public ArrayList<Photo> getPhotos() {
+	public ObservableList<Photo> getPhotos() {
 		return photos;
 	}
 }

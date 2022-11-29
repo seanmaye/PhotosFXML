@@ -1,16 +1,16 @@
 package photos;
 
 import javafx.scene.image.Image;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import java.util.*;
-
-import java.util.ArrayList;
 
 public class Photo {
 	Image image;
 	String caption;
 	Date date;
 	Calendar c = Calendar.getInstance();
-	ArrayList<Tag> tags = new ArrayList<Tag>();
+	ObservableList<Tag> tags = FXCollections.observableArrayList();
 
 		public Photo(Image image,String caption, String tagName, String tagValue) {
 			this.image=image;
@@ -37,7 +37,7 @@ public class Photo {
 			return date;
 		}
 		
-		public ArrayList<Tag> getTags() {
+		public ObservableList<Tag> getTags() {
 			return tags;
 		}
 		
