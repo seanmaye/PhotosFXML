@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 public class UserApp implements Serializable{
 	ArrayList<User> users;
 	
-	public static final String storeDir = "dat";
+	public static final String storeDir = "."; //in the slides this said "dat" but we want to look in the current directory so use "."
 	public static final String storeFile = "users.dat";
 	private static final long serialVersionUID = 1L;
 	
