@@ -28,8 +28,8 @@ public class CurrentAlbumToolsController implements Initializable {
 	private Parent root;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		titleText.setText(NonAdminHomepageController.passAlbum.toString()+" Tools");
-		albumnameField.setText(NonAdminHomepageController.passAlbum.toString());
+		titleText.setText(NonAdminHomepageController.passAlbum.getName()+" Tools");
+		albumnameField.setText(NonAdminHomepageController.passAlbum.getName());
 	
 		//this would all be changed to user stuff when that is implemented
 	}
@@ -43,8 +43,8 @@ public class CurrentAlbumToolsController implements Initializable {
 	}
 	public void rename(ActionEvent e) throws IOException {
 		NonAdminHomepageController.passAlbum.setName(albumnameField.getText());
-		titleText.setText(NonAdminHomepageController.passAlbum.toString()+" Tools");
-		albumnameField.setText(NonAdminHomepageController.passAlbum.toString());
+		titleText.setText(NonAdminHomepageController.passAlbum.getName()+" Tools");
+		albumnameField.setText(NonAdminHomepageController.passAlbum.getName());
 	}
 	
 	public void deleteAlbum(ActionEvent e) throws IOException {

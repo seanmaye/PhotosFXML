@@ -3,8 +3,7 @@ package photos;
 import java.io.Serializable;
 import java.util.*;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 
 public class Album implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -49,7 +48,7 @@ public class Album implements Serializable{
 	}
 
 	public String toString() {
-		return name;
+		return name+ ": "+firstDate+" - " + lastDate;
 	}
 
 	public ArrayList<Photo> getPhotos() {

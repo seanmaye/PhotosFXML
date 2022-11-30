@@ -131,10 +131,29 @@ public class CurrentAlbumDisplayController implements Initializable {
 	}
 
 	public void moveRight() {
+		if(currentPhotoIndex!=photos.size()-1) {
+			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
+			currentPhotoIndex++;
+			selectionModel.select(currentPhotoIndex);
+			imageView.setImage(photos.get(currentPhotoIndex).getImage());
+			caption.setText(photos.get(currentPhotoIndex).getCaption());
+			tags.setText(photos.get(currentPhotoIndex).getTags().get(0).getTagName());
+			date.setText(photos.get(currentPhotoIndex).getDate().toString());
+		}
+			
 		
 	}
 
 	public void moveLeft() {
+		if(currentPhotoIndex!=0) {
+			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
+			currentPhotoIndex--;
+			selectionModel.select(currentPhotoIndex);
+			imageView.setImage(photos.get(currentPhotoIndex).getImage());
+			caption.setText(photos.get(currentPhotoIndex).getCaption());
+			tags.setText(photos.get(currentPhotoIndex).getTags().get(0).getTagName());
+			date.setText(photos.get(currentPhotoIndex).getDate().toString());
+		}
 
 	}
 
