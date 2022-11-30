@@ -10,30 +10,25 @@ public class Tag implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	String name;
-	ArrayList<String> values = new ArrayList<String>();
+	String value;
 	
 	//only for "location"
 	public Tag(String name, String value) {
 		this.name = name;
-		values.add(value);
+		this.value=value;
 	}
 	
-	//for any other tag
-	public Tag(String name, ArrayList<String> values) {
-		this.name = name;
-		this.values = values;
-	}
 	
 	public String getTagName() {
 		return name;
 	}
 	
-	public ArrayList<String> getTagValues() {
-		return values;
+	public String getTagValue() {
+		return value;
 	}
 	
 	public String toString() {
-		return name + " : " + values.toString();
+		return name + " : " + value;
 		//name : [value, value, value]
 	}
 }

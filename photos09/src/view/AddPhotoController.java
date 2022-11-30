@@ -118,15 +118,12 @@ public class AddPhotoController implements Initializable {
 		Image image = photoView.getImage();
 		String tagName = nameField.getSelectionModel().getSelectedItem();
 		String caption = captionField.getText();
-		ArrayList<String> valueList = new ArrayList<String>();
-		//prompt and maybe seperate with comma
-		String tagValue = valueField.getText();
-		String[] tokens = tagValue.split(",");
-		for (String t : tokens) {
-			valueList.add(t);
-		}
 		
-		Photo toAdd = new Photo(image, caption, tagName, valueList);
+		
+		String tagValue = valueField.getText();
+		
+		
+		Photo toAdd = new Photo(image, caption, tagName,tagValue);
 		NonAdminHomepageController.passAlbum.addPhoto(toAdd);
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
