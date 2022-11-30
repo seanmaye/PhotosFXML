@@ -34,7 +34,7 @@ import photos.Photo;
 import photos.Tag;
 import photos.User;
 
-public class AddPhotoController implements Initializable {
+public class EditTagsController implements Initializable {
 
 	@FXML
 	private TextField captionField;
@@ -59,7 +59,7 @@ public class AddPhotoController implements Initializable {
 
 	}
 
-	public void goBack(ActionEvent e) throws IOException {
+	public void deleteTag(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -68,7 +68,7 @@ public class AddPhotoController implements Initializable {
 
 	}
 
-	public void uploadPhoto(ActionEvent e) throws IOException {
+	public void editTag(ActionEvent e) throws IOException {
 		// make
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
@@ -84,10 +84,10 @@ public class AddPhotoController implements Initializable {
 
 	}
 
-	public void newType(ActionEvent e) throws IOException {
+	public void addTag(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
 
-		td.setHeaderText("enter tag type");
+		td.setHeaderText("enter tag type, then values seperated by commas");
 
 		Optional<String> result = td.showAndWait();
 		String tag = result.get();
@@ -103,24 +103,6 @@ public class AddPhotoController implements Initializable {
 			alert.setContentText("Tag Already exists");
 			alert.showAndWait();
 		}
-		Parent root = FXMLLoader.load(getClass().getResource("addPhoto.fxml"));
-		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-
-	}
-
-	public void addPhoto(ActionEvent e) throws IOException {
-		Image image = photoView.getImage();
-		String tagName = nameField.getSelectionModel().getSelectedItem();
-		String caption = captionField.getText();
-		ArrayList<String> valueList = new ArrayList<String>();
-		//prompt and maybe seperate with comma
-		String tagValue = valueField.getText();
-		valueList.add(tagValue);
-		Photo toAdd = new Photo(image, caption, tagName, valueList);
-		NonAdminHomepageController.passAlbum.addPhoto(toAdd);
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -128,5 +110,7 @@ public class AddPhotoController implements Initializable {
 		stage.show();
 
 	}
+
+	
 
 }

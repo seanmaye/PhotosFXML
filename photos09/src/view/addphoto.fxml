@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,11 +15,19 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button layoutX="174.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Listed Photo" />
+      <Button layoutX="50.0" layoutY="345.0" mnemonicParsing="false" onAction="#addPhoto" text="Add Listed Photo" />
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Cancel" />
-      <Button layoutX="329.0" layoutY="345.0" mnemonicParsing="false" onAction="#uploadPhoto" text="Upload Photo" />
+      <Button layoutX="185.0" layoutY="345.0" mnemonicParsing="false" onAction="#uploadPhoto" text="Upload Photo From DIsk" />
       <ImageView fx:id="photoView" fitHeight="256.0" fitWidth="280.0" layoutX="45.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="nameField" alignment="TOP_LEFT" layoutX="373.0" layoutY="127.0" prefHeight="26.0" prefWidth="160.0" promptText="Enter Tag Name:" />
-      <TextField fx:id="valueField" layoutX="373.0" layoutY="242.0" promptText="Enter Tag Value:" />
+      <TextField fx:id="valueField" layoutX="373.0" layoutY="319.0" promptText="Enter Tag Value:" />
+      <ListView fx:id="nameField" layoutX="373.0" layoutY="168.0" prefHeight="99.0" prefWidth="160.0" />
+      <Text layoutX="363.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Text>
+      <Button fx:id="newType" layoutX="373.0" layoutY="275.0" mnemonicParsing="false" onAction="#newType" prefHeight="26.0" prefWidth="160.0" text="Create New Tag Type" />
+      <Text layoutX="424.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Tag" />
+      <TextField fx:id="captionField" layoutX="373.0" layoutY="82.0" promptText="Enter Caption" />
    </children>
 </AnchorPane>

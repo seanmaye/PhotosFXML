@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CurrentAlbumDisplayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CurrentAlbumDisplayController">
    <children>
       <Text fx:id="textTitle" layoutX="178.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Album Title">
          <font>
@@ -18,14 +18,15 @@
       </Text>
       <ListView fx:id="thumbnails" layoutX="21.0" layoutY="91.0" onMouseClicked="#displayPhoto" prefHeight="263.0" prefWidth="77.0" />
       <Button layoutX="463.0" layoutY="91.0" mnemonicParsing="false" onAction="#addPhoto" prefHeight="26.0" prefWidth="97.0" text="Add Photo" />
-      <Button layoutX="463.0" layoutY="166.0" mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />
-      <Button layoutX="463.0" layoutY="236.0" mnemonicParsing="false" onAction="#copyMove" prefHeight="45.0" prefWidth="97.0" text="Copy/Move &#10;Photo" textAlignment="CENTER" />
-      <TextArea fx:id="tags" layoutX="357.0" layoutY="241.0" prefHeight="114.0" prefWidth="97.0" promptText="tags" />
+      <Button layoutX="463.0" layoutY="122.0" mnemonicParsing="false" onAction="#removePhoto" text="Remove Photo" />
+      <Button layoutX="463.0" layoutY="155.0" mnemonicParsing="false" onAction="#copyMove" prefHeight="45.0" prefWidth="97.0" text="Copy/Move &#10;Photo" textAlignment="CENTER" />
+      <TextArea fx:id="tags" layoutX="357.0" layoutY="241.0" prefHeight="114.0" prefWidth="97.0" promptText="Tags" />
       <TextArea fx:id="caption" layoutX="357.0" layoutY="91.0" prefHeight="114.0" prefWidth="97.0" promptText="Caption" />
-      <TextField fx:id="date" layoutX="357.0" layoutY="210.0" prefHeight="26.0" prefWidth="97.0" promptText="Date" />
       <Button layoutX="21.0" layoutY="19.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Album Tools" />
       <ImageView fx:id="imageView" fitHeight="263.0" fitWidth="235.0" layoutX="110.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="moveLeft" layoutX="134.0" layoutY="354.0" mnemonicParsing="false" onAction="#moveLeft" text="&lt;" />
       <Button fx:id="moveRight" layoutX="288.0" layoutY="354.0" mnemonicParsing="false" onAction="#moveRight" text="&gt;" />
+      <TextField fx:id="date" layoutX="357.0" layoutY="210.0" prefHeight="26.0" prefWidth="97.0" promptText="Date" />
+      <Button layoutX="463.0" layoutY="241.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="97.0" text="Add/Edit/&#10;Remove Tags" textAlignment="CENTER" />
    </children>
 </AnchorPane>

@@ -61,8 +61,9 @@ public class CurrentAlbumDisplayController implements Initializable {
 		if (photos.isEmpty() == false) {
 			imageView.setImage(photos.get(0).getImage());
 			caption.setText(photos.get(0).getCaption());
-			tags.setText(photos.get(0).getTags().get(0).getTagName());
+			tags.setText(photos.get(0).getTags().get(0).getTagValues().get(0));
 			date.setText(photos.get(0).getDate().toString());
+			date.setEditable(false);
 			textTitle.setText(NonAdminHomepageController.passAlbum.getName());
 			for (int i = 0; i < photos.size(); i++) {
 				ImageView temp = new ImageView(photos.get(i).getImage());

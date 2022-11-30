@@ -54,7 +54,7 @@ public class User implements Serializable {
 		for (Album a : albums) {
 			for (Photo p : a.photos) {
 				for (Tag t : p.tags) {
-					if (t.name.equals(tagName)) {
+					if (t.name.equalsIgnoreCase(tagName)) {
 						in = true;
 					}
 				}
