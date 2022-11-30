@@ -24,6 +24,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import photos.Photo;
+import photos.Tag;
 
 public class CurrentAlbumDisplayController implements Initializable {
 
@@ -64,9 +65,10 @@ public class CurrentAlbumDisplayController implements Initializable {
 			imageView.setImage(photos.get(0).getImage());
 			caption.setText(photos.get(0).getCaption());
 			String tagValues = "";
-			for(String s :photos.get(0).getTags().get(0).getTagValues()) {
-				tagValues+=s+",";
+			for(Tag t: photos.get(0).getTags()){
+				tagValues+=t.getTagValue()+",";
 			}
+			
 			tagValues = tagValues.substring(0, tagValues.length() - 1);
 			tags.setText(tagValues);
 			date.setText(photos.get(0).getDate().toString());
@@ -99,8 +101,8 @@ public class CurrentAlbumDisplayController implements Initializable {
 		this.imageView.setImage(toDisplay);
 		
 		String tagValues = "";
-		for(String s :photos.get(index).getTags().get(0).getTagValues()) {
-			tagValues+=s+",";
+		for(Tag t: photos.get(0).getTags()){
+			tagValues+=t.getTagValue()+",";
 		}
 		tagValues = tagValues.substring(0, tagValues.length() - 1);
 		caption.setText(photos.get(index).getCaption());
@@ -151,8 +153,8 @@ public class CurrentAlbumDisplayController implements Initializable {
 			currentPhotoIndex++;
 			selectionModel.select(currentPhotoIndex);
 			String tagValues = "";
-			for(String s :photos.get(currentPhotoIndex).getTags().get(0).getTagValues()) {
-				tagValues+=s+",";
+			for(Tag t: photos.get(0).getTags()){
+				tagValues+=t.getTagValue()+",";
 			}
 			tagValues = tagValues.substring(0, tagValues.length() - 1);
 			imageView.setImage(photos.get(currentPhotoIndex).getImage());
@@ -170,8 +172,8 @@ public class CurrentAlbumDisplayController implements Initializable {
 			currentPhotoIndex--;
 			selectionModel.select(currentPhotoIndex);
 			String tagValues = "";
-			for(String s :photos.get(currentPhotoIndex).getTags().get(0).getTagValues()) {
-				tagValues+=s+",";
+			for(Tag t: photos.get(0).getTags()){
+				tagValues+=t.getTagValue()+",";
 			}
 			tagValues = tagValues.substring(0, tagValues.length() - 1);
 			imageView.setImage(photos.get(currentPhotoIndex).getImage());
