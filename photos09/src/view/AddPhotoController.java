@@ -46,6 +46,7 @@ public class AddPhotoController {
 	}
 
 	public void uploadPhoto(ActionEvent e) throws IOException {
+		//make 
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
 		FileChooser.ExtensionFilter fileExtension = new FileChooser.ExtensionFilter("Images", "*.bmp", "*.gif",

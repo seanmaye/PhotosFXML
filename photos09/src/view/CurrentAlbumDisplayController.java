@@ -42,15 +42,19 @@ public class CurrentAlbumDisplayController implements Initializable {
 	@FXML
 	private Text textTitle;
 	@FXML
-	private Button slideshow;
+	private Button moveLeft;
+	@FXML
+	private Button moveRight;
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
-	boolean isSlideshow;
+	private int currentPhotoIndex=0;
+
 	ObservableList<ImageView> items = FXCollections.observableArrayList();
 	ObservableList<Photo> photos = FXCollections.observableList(NonAdminHomepageController.passAlbum.getPhotos());
 
 	public static Photo passPhoto;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		date.setEditable(false);
@@ -73,15 +77,21 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}
 	}
 
-	public void displaySong(MouseEvent e) throws IOException {
+	public void displayPhoto(MouseEvent e) throws IOException {
 		ImageView imageView = thumbnails.getSelectionModel().getSelectedItem();
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		if(imageView==null) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("ERROR");
+				alert.setContentText("Photo not selected");
+				alert.showAndWait();
+		}else {
 		Image toDisplay = imageView.getImage();
 		this.imageView.setImage(toDisplay);
 		caption.setText(photos.get(0).getCaption());
 		tags.setText(photos.get(index).getTags().get(0).getTagName());
 		date.setText(photos.get(index).getDate().toString());
-
+		}
 	}
 
 	public void goBack(ActionEvent e) throws IOException {
@@ -109,26 +119,25 @@ public class CurrentAlbumDisplayController implements Initializable {
 			alert.setTitle("ERROR");
 			alert.setContentText("Photo not selected");
 			alert.showAndWait();
-		}else {
-		NonAdminHomepageController.passAlbum.removePhoto(photos.get(index));
-		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
-		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		} else {
+			NonAdminHomepageController.passAlbum.removePhoto(photos.get(index));
+			Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
+			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
 		}
 
 	}
-	public void slideShow() {
-		if(isSlideshow==true) {
-			
-			isSlideshow=false;
-			slideshow.setText("Start Slideshow");
-		}else {
-			
-		}
+
+	public void moveRight() {
+		
 	}
-	
+
+	public void moveLeft() {
+
+	}
+
 	public void copyMove(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		if (index == -1) {
@@ -136,13 +145,13 @@ public class CurrentAlbumDisplayController implements Initializable {
 			alert.setTitle("ERROR");
 			alert.setContentText("Photo not selected");
 			alert.showAndWait();
-		}else {
-		passPhoto=photos.get(index);
-		Parent root = FXMLLoader.load(getClass().getResource("copyMovePhoto.fxml"));
-		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		} else {
+			passPhoto = photos.get(index);
+			Parent root = FXMLLoader.load(getClass().getResource("copyMovePhoto.fxml"));
+			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
 		}
 	}
 

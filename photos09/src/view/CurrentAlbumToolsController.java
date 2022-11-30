@@ -48,7 +48,7 @@ public class CurrentAlbumToolsController implements Initializable {
 	}
 	
 	public void deleteAlbum(ActionEvent e) throws IOException {
-		LoginScreenController.currentUser.removePhoto(NonAdminHomepageController.passAlbum);
+		LoginScreenController.currentUser.removeAlbum(NonAdminHomepageController.passAlbum);
 		Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
