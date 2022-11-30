@@ -90,47 +90,60 @@ public class EditTagsController implements Initializable {
 		td.setHeaderText("enter tag type");
 
 		Optional<String> result = td.showAndWait();
-		String tag = result.get();
-
+		String tag;
+		if(result.isEmpty()) {
+			return;
+		}else {
+			tag = result.get();
+		}
 		boolean dupe = LoginScreenController.currentUser.getTagNames().stream()
 				.anyMatch(tag::equalsIgnoreCase);
 
 		if (!dupe) {
 			LoginScreenController.currentUser.addTagName(tag);
+			items = FXCollections.observableList(CurrentAlbumDisplayController.passPhoto.getTags());
+			currentTagsListView.setItems(items);
+			LoginScreenController.currentUser.getTagNames().sort(String::compareToIgnoreCase);
+			items2 = FXCollections.observableList(LoginScreenController.currentUser.getTagNames());
+			tagNameListView.setItems(items2);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("ERROR");
 			alert.setContentText("Tag Type Already exists");
 			alert.showAndWait();
 		}
-		Parent root = FXMLLoader.load(getClass().getResource("editTag.fxml"));
-		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		
 
 	}
 
 	public void addTag(ActionEvent e) throws IOException {
-		Tag toAdd = new Tag(tagNameListView.getSelectionModel().getSelectedItem(),valueField.getText());
+		boolean flag = false;
 		for(Tag t: CurrentAlbumDisplayController.passPhoto.getTags()) {
-			if(t == toAdd) {
+			if(t.getTagName().equals(tagNameListView.getSelectionModel().getSelectedItem()) && t.getTagValue().equals(valueField.getText())) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("ERROR");
 				alert.setContentText("Duplicate Tag!");
 				alert.showAndWait();
-			}else {
-				CurrentAlbumDisplayController.passPhoto.addTag(tagNameListView.getSelectionModel().getSelectedItem(), valueField.getText());
+				flag=true;
+				
+				
 			}
 		}
-		Parent root = FXMLLoader.load(getClass().getResource("editTag.fxml"));
-		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if(flag=false) {
+				CurrentAlbumDisplayController.passPhoto.addTag(tagNameListView.getSelectionModel().getSelectedItem(), valueField.getText());
+				
+				items = FXCollections.observableList(CurrentAlbumDisplayController.passPhoto.getTags());
+				currentTagsListView.setItems(items);
+				LoginScreenController.currentUser.getTagNames().sort(String::compareToIgnoreCase);
+				items2 = FXCollections.observableList(LoginScreenController.currentUser.getTagNames());
+				tagNameListView.setItems(items2);
+		}
+			
+		}
+		
 
 	}
 
 	
 
-}
+

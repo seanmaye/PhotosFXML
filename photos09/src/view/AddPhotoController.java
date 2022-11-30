@@ -95,7 +95,13 @@ public class AddPhotoController implements Initializable {
 		td.setHeaderText("enter tag type");
 
 		Optional<String> result = td.showAndWait();
-		String tag = result.get();
+		String tag;
+		if(result.isEmpty()) {
+			return;
+		}else {
+			tag = result.get();
+		}
+		
 
 		boolean dupe = LoginScreenController.currentUser.getTagNames().stream()
 				.anyMatch(tag::equalsIgnoreCase);
@@ -123,7 +129,6 @@ public class AddPhotoController implements Initializable {
 		
 		
 		String tagValue = valueField.getText();
-		
 		
 		Photo photo = new Photo(toAdd, caption, tagName,tagValue);
 		NonAdminHomepageController.passAlbum.addPhoto(photo);

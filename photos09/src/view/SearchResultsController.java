@@ -8,7 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class SearchResultsController {
@@ -17,7 +19,7 @@ public class SearchResultsController {
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
-	
+	private ListView<ImageView> listView;
 	public void goBack(ActionEvent e) throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
 			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

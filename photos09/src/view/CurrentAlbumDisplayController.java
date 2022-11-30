@@ -68,9 +68,12 @@ public class CurrentAlbumDisplayController implements Initializable {
 			for(Tag t: photos.get(0).getTags()){
 				tagValues+=t.getTagValue()+",";
 			}
-			
-			tagValues = tagValues.substring(0, tagValues.length() - 1);
-			tags.setText(tagValues);
+			if(tagValues.length()>1) {
+				tagValues = tagValues.substring(0, tagValues.length() - 1);
+				tags.setText(tagValues);
+			}else{
+				tags.setText("");
+			}
 			date.setText(photos.get(0).getDate().toString());
 			date.setEditable(false);
 			textTitle.setText(NonAdminHomepageController.passAlbum.getName());
@@ -101,12 +104,16 @@ public class CurrentAlbumDisplayController implements Initializable {
 		this.imageView.setImage(toDisplay);
 		
 		String tagValues = "";
-		for(Tag t: photos.get(0).getTags()){
+		for(Tag t: photos.get(index).getTags()){
 			tagValues+=t.getTagValue()+",";
 		}
-		tagValues = tagValues.substring(0, tagValues.length() - 1);
+		if(tagValues.length()>1) {
+			tagValues = tagValues.substring(0, tagValues.length() - 1);
+			tags.setText(tagValues);
+		}else{
+			tags.setText("");
+		}
 		caption.setText(photos.get(index).getCaption());
-		tags.setText(tagValues);
 		date.setText(photos.get(index).getDate().toString());
 		}
 	}
@@ -153,13 +160,17 @@ public class CurrentAlbumDisplayController implements Initializable {
 			currentPhotoIndex++;
 			selectionModel.select(currentPhotoIndex);
 			String tagValues = "";
-			for(Tag t: photos.get(0).getTags()){
+			for(Tag t: photos.get(currentPhotoIndex).getTags()){
 				tagValues+=t.getTagValue()+",";
 			}
-			tagValues = tagValues.substring(0, tagValues.length() - 1);
+			if(tagValues.length()>1) {
+				tagValues = tagValues.substring(0, tagValues.length() - 1);
+				tags.setText(tagValues);
+			}else{
+				tags.setText("");
+			}
 			imageView.setImage(photos.get(currentPhotoIndex).getImage());
 			caption.setText(photos.get(currentPhotoIndex).getCaption());
-			tags.setText(tagValues);
 			date.setText(photos.get(currentPhotoIndex).getDate().toString());
 		}
 			
@@ -172,13 +183,18 @@ public class CurrentAlbumDisplayController implements Initializable {
 			currentPhotoIndex--;
 			selectionModel.select(currentPhotoIndex);
 			String tagValues = "";
-			for(Tag t: photos.get(0).getTags()){
+			for(Tag t: photos.get(currentPhotoIndex).getTags()){
 				tagValues+=t.getTagValue()+",";
 			}
-			tagValues = tagValues.substring(0, tagValues.length() - 1);
+			if(tagValues.length()>1) {
+				tagValues = tagValues.substring(0, tagValues.length() - 1);
+				tags.setText(tagValues);
+			}else{
+				tags.setText("");
+			}
+			
 			imageView.setImage(photos.get(currentPhotoIndex).getImage());
 			caption.setText(photos.get(currentPhotoIndex).getCaption());
-			tags.setText(tagValues);
 			date.setText(photos.get(currentPhotoIndex).getDate().toString());
 		}
 
@@ -186,12 +202,19 @@ public class CurrentAlbumDisplayController implements Initializable {
 	
 	public void editTag(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		if (index == -1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Photo not selected");
+			alert.showAndWait();
+		} else {
 		passPhoto = photos.get(index);
 		Parent root = FXMLLoader.load(getClass().getResource("editTags.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		}
 	}
 	
 

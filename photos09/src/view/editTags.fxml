@@ -15,8 +15,7 @@
          </font>
       </Text>
       <ListView fx:id="currentTagsListView" layoutX="35.0" layoutY="104.0" prefHeight="274.0" prefWidth="240.0" />
-      <Button layoutX="288.0" layoutY="130.0" mnemonicParsing="false" onAction="#editTag" prefHeight="54.0" prefWidth="72.0" text="Edit" />
-      <Button layoutX="288.0" layoutY="296.0" mnemonicParsing="false" onAction="#deleteTag" prefHeight="54.0" prefWidth="72.0" text="Delete" />
+      <Button layoutX="289.0" layoutY="214.0" mnemonicParsing="false" onAction="#deleteTag" prefHeight="54.0" prefWidth="72.0" text="Delete" />
       <Button layoutX="469.0" layoutY="338.0" mnemonicParsing="false" onAction="#addTag" prefHeight="25.0" prefWidth="65.0" text="Add" />
       <Text layoutX="99.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Tags">
          <font>
@@ -31,6 +30,6 @@
       </Text>
       <TextField fx:id="valueField" layoutX="424.0" layoutY="296.0" prefHeight="25.0" prefWidth="155.0" promptText="Enter Tag Value" />
       <Button layoutX="424.0" layoutY="255.0" mnemonicParsing="false" onAction="#newType" prefHeight="25.0" prefWidth="155.0" text="New Tag Name" />
-      <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" text="&lt;&lt;Back" />
+      <Button layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#goBack" text="&lt;&lt;Back" />
    </children>
 </AnchorPane>
