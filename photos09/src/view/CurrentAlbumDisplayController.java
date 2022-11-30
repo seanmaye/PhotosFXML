@@ -58,10 +58,17 @@ public class CurrentAlbumDisplayController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		date.setEditable(false);
+		tags.setEditable(false);
+		caption.setEditable(false);
 		if (photos.isEmpty() == false) {
 			imageView.setImage(photos.get(0).getImage());
 			caption.setText(photos.get(0).getCaption());
-			tags.setText(photos.get(0).getTags().get(0).getTagValues().get(0));
+			String tagValues = "";
+			for(String s :photos.get(0).getTags().get(0).getTagValues()) {
+				tagValues+=s+",";
+			}
+			tagValues = tagValues.substring(0, tagValues.length() - 1);
+			tags.setText(tagValues);
 			date.setText(photos.get(0).getDate().toString());
 			date.setEditable(false);
 			textTitle.setText(NonAdminHomepageController.passAlbum.getName());
@@ -81,6 +88,7 @@ public class CurrentAlbumDisplayController implements Initializable {
 	public void displayPhoto(MouseEvent e) throws IOException {
 		ImageView imageView = thumbnails.getSelectionModel().getSelectedItem();
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		currentPhotoIndex=index;
 		if(imageView==null) {
 				Alert alert = new Alert(AlertType.ERROR);
 				alert.setTitle("ERROR");
@@ -89,8 +97,14 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}else {
 		Image toDisplay = imageView.getImage();
 		this.imageView.setImage(toDisplay);
-		caption.setText(photos.get(0).getCaption());
-		tags.setText(photos.get(index).getTags().get(0).getTagName());
+		
+		String tagValues = "";
+		for(String s :photos.get(index).getTags().get(0).getTagValues()) {
+			tagValues+=s+",";
+		}
+		tagValues = tagValues.substring(0, tagValues.length() - 1);
+		caption.setText(photos.get(index).getCaption());
+		tags.setText(tagValues);
 		date.setText(photos.get(index).getDate().toString());
 		}
 	}
@@ -136,9 +150,14 @@ public class CurrentAlbumDisplayController implements Initializable {
 			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
 			currentPhotoIndex++;
 			selectionModel.select(currentPhotoIndex);
+			String tagValues = "";
+			for(String s :photos.get(currentPhotoIndex).getTags().get(0).getTagValues()) {
+				tagValues+=s+",";
+			}
+			tagValues = tagValues.substring(0, tagValues.length() - 1);
 			imageView.setImage(photos.get(currentPhotoIndex).getImage());
 			caption.setText(photos.get(currentPhotoIndex).getCaption());
-			tags.setText(photos.get(currentPhotoIndex).getTags().get(0).getTagName());
+			tags.setText(tagValues);
 			date.setText(photos.get(currentPhotoIndex).getDate().toString());
 		}
 			
@@ -150,9 +169,14 @@ public class CurrentAlbumDisplayController implements Initializable {
 			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
 			currentPhotoIndex--;
 			selectionModel.select(currentPhotoIndex);
+			String tagValues = "";
+			for(String s :photos.get(currentPhotoIndex).getTags().get(0).getTagValues()) {
+				tagValues+=s+",";
+			}
+			tagValues = tagValues.substring(0, tagValues.length() - 1);
 			imageView.setImage(photos.get(currentPhotoIndex).getImage());
 			caption.setText(photos.get(currentPhotoIndex).getCaption());
-			tags.setText(photos.get(currentPhotoIndex).getTags().get(0).getTagName());
+			tags.setText(tagValues);
 			date.setText(photos.get(currentPhotoIndex).getDate().toString());
 		}
 

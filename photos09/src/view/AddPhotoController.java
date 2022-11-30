@@ -75,13 +75,16 @@ public class AddPhotoController implements Initializable {
 		FileChooser.ExtensionFilter fileExtension = new FileChooser.ExtensionFilter("Images", "*.bmp", "*.gif",
 				"*.jpeg", "*.png", "*.jpg");
 		fileChooser.getExtensionFilters().add(fileExtension);
-		List<File> list = fileChooser.showOpenMultipleDialog(stage);
-		for (File file : list) {
+		File file = fileChooser.showOpenDialog(stage);
+		if(file!=null) {
 			Image image = new Image(file.toURI().toString());
 			photoView.setImage(image);
-
+		}else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("No file selected");
+			alert.showAndWait();
 		}
-
 	}
 
 	public void newType(ActionEvent e) throws IOException {
@@ -118,7 +121,11 @@ public class AddPhotoController implements Initializable {
 		ArrayList<String> valueList = new ArrayList<String>();
 		//prompt and maybe seperate with comma
 		String tagValue = valueField.getText();
-		valueList.add(tagValue);
+		String[] tokens = tagValue.split(",");
+		for (String t : tokens) {
+			valueList.add(t);
+		}
+		
 		Photo toAdd = new Photo(image, caption, tagName, valueList);
 		NonAdminHomepageController.passAlbum.addPhoto(toAdd);
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
