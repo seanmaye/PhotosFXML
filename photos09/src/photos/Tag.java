@@ -1,11 +1,14 @@
 package photos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Tag {
+public class Tag implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	String name;
 	ArrayList<String> values = new ArrayList<String>();
 	

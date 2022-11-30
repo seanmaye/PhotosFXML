@@ -1,11 +1,14 @@
 package photos;
 
+import java.io.Serializable;
 import javafx.scene.image.Image;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.*;
 
-public class Photo {
+public class Photo implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	Image image;
 	String caption;
 	Date date;

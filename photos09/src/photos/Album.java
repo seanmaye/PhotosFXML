@@ -1,11 +1,14 @@
 package photos;
 
+import java.io.Serializable;
 import java.util.*;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class Album {
+public class Album implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	String name;
 	ArrayList<Photo> photos = new ArrayList<Photo>();
 	int numPhotos = 0;
