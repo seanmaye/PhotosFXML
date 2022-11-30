@@ -26,7 +26,7 @@ public class Photos extends Application {
 		List<String> fileList = listFileNames(folder);
 		for(int i=0; i<fileList.size(); i++) {
 		File file = new File("StockImages/"+fileList.get(i));
-		Photo photo = new Photo(new Image(file.toURI().toString()),"This is stock", "Stock","stock");
+		Photo photo = new Photo(file,"This is stock", "Stock","stock");
 		stockAlbum.addPhoto(photo);
 		}
 		stock.addAlbum(stockAlbum);

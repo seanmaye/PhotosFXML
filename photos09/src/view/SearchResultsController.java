@@ -13,8 +13,7 @@ import javafx.stage.Stage;
 
 public class SearchResultsController {
 	
-	@FXML
-	private TextField usernameField;
+
 	private Scene scene;
 	private Stage stage;
 	private Parent root;

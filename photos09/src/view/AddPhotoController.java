@@ -49,6 +49,7 @@ public class AddPhotoController implements Initializable {
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
+	private File toAdd;
 	ObservableList<String> items = FXCollections.observableArrayList();
 
 	@Override
@@ -77,6 +78,7 @@ public class AddPhotoController implements Initializable {
 		fileChooser.getExtensionFilters().add(fileExtension);
 		File file = fileChooser.showOpenDialog(stage);
 		if(file!=null) {
+			toAdd=file;
 			Image image = new Image(file.toURI().toString());
 			photoView.setImage(image);
 		}else {
@@ -123,8 +125,8 @@ public class AddPhotoController implements Initializable {
 		String tagValue = valueField.getText();
 		
 		
-		Photo toAdd = new Photo(image, caption, tagName,tagValue);
-		NonAdminHomepageController.passAlbum.addPhoto(toAdd);
+		Photo photo = new Photo(toAdd, caption, tagName,tagValue);
+		NonAdminHomepageController.passAlbum.addPhoto(photo);
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);

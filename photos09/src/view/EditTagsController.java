@@ -41,7 +41,9 @@ public class EditTagsController implements Initializable {
 	@FXML
 	private ImageView photoView;
 	@FXML
-	private ListView<String> nameField;
+	private ListView<Tag> currentTagsListView;
+	@FXML
+	private ListView<String> tagNameListView;
 	@FXML
 	private TextField valueField;
 	@FXML
@@ -49,17 +51,30 @@ public class EditTagsController implements Initializable {
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
-	ObservableList<String> items = FXCollections.observableArrayList();
+	ObservableList<Tag> items = FXCollections.observableArrayList();
+	ObservableList<String> items2 = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		items = FXCollections.observableList(CurrentAlbumDisplayController.passPhoto.getTags());
+		currentTagsListView.setItems(items);
 		LoginScreenController.currentUser.getTagNames().sort(String::compareToIgnoreCase);
-		items = FXCollections.observableList(LoginScreenController.currentUser.getTagNames());
-		nameField.setItems(items);
-
+		items2 = FXCollections.observableList(LoginScreenController.currentUser.getTagNames());
+		tagNameListView.setItems(items2);
 	}
 
 	public void deleteTag(ActionEvent e) throws IOException {
+		Tag toDelete = currentTagsListView.getSelectionModel().getSelectedItem();
+		CurrentAlbumDisplayController.passPhoto.deleteTag(toDelete);
+		Parent root = FXMLLoader.load(getClass().getResource("editTags.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
+	}
+	
+	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -68,26 +83,11 @@ public class EditTagsController implements Initializable {
 
 	}
 
-	public void editTag(ActionEvent e) throws IOException {
-		// make
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Resource File");
-		FileChooser.ExtensionFilter fileExtension = new FileChooser.ExtensionFilter("Images", "*.bmp", "*.gif",
-				"*.jpeg", "*.png", "*.jpg");
-		fileChooser.getExtensionFilters().add(fileExtension);
-		List<File> list = fileChooser.showOpenMultipleDialog(stage);
-		for (File file : list) {
-			Image image = new Image(file.toURI().toString());
-			photoView.setImage(image);
-
-		}
-
-	}
-
-	public void addTag(ActionEvent e) throws IOException {
+	
+	public void newType(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
 
-		td.setHeaderText("enter tag type, then values seperated by commas");
+		td.setHeaderText("enter tag type");
 
 		Optional<String> result = td.showAndWait();
 		String tag = result.get();
@@ -100,10 +100,30 @@ public class EditTagsController implements Initializable {
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("ERROR");
-			alert.setContentText("Tag Already exists");
+			alert.setContentText("Tag Type Already exists");
 			alert.showAndWait();
 		}
-		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("editTag.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+
+	}
+
+	public void addTag(ActionEvent e) throws IOException {
+		Tag toAdd = new Tag(tagNameListView.getSelectionModel().getSelectedItem(),valueField.getText());
+		for(Tag t: CurrentAlbumDisplayController.passPhoto.getTags()) {
+			if(t == toAdd) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("ERROR");
+				alert.setContentText("Duplicate Tag!");
+				alert.showAndWait();
+			}else {
+				CurrentAlbumDisplayController.passPhoto.addTag(tagNameListView.getSelectionModel().getSelectedItem(), valueField.getText());
+			}
+		}
+		Parent root = FXMLLoader.load(getClass().getResource("editTag.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
