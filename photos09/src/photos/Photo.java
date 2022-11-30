@@ -1,22 +1,18 @@
 package photos;
 
 import java.io.Serializable;
-import javafx.scene.image.Image;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import java.util.*;
 
 public class Photo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	Image image;
+	String image;
 	String caption;
 	Date date;
 	Calendar c = Calendar.getInstance();
 	ArrayList<Tag> tags = new ArrayList<Tag>();
 
-	//only call this when tagName.equals("location")
-	public Photo(Image image, String caption, String tagName, String tagValue) {
+	public Photo(String image, String caption, String tagName, String tagValue) {
 		this.image = image;
 		this.caption = caption;
 		tags.add(new Tag(tagName, tagValue));
@@ -24,9 +20,8 @@ public class Photo implements Serializable {
 		date = c.getTime();
 	}
 
-	//call this otherwise
 
-	public Image getImage() {
+	public String getImage() {
 		return image;
 	}
 
@@ -49,8 +44,6 @@ public class Photo implements Serializable {
 	public void addTag(String tagName, String tagValue) {
 		tags.add(new Tag(tagName, tagValue));
 	}
-
-
 
 	public void deleteTag(Tag tag) {
 		tags.remove(tag);
