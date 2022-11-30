@@ -1,7 +1,10 @@
 package photos;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
+
+import view.Photos;
 
 
 
@@ -18,27 +21,30 @@ public class Album implements Serializable{
 		this.name = name;
 	}
 
-	public void addPhoto(Photo photo) {
+	public void addPhoto(Photo photo) throws IOException {
 		photos.add(photo);
 		photos.sort(new PhotoComparator());
 		numPhotos++;
 		firstDate = photos.get(0).date;
 		lastDate = photos.get(photos.size() - 1).date;
+		UserApp.writeApp(Photos.uapp);
 	}
 
-	public void removePhoto(Photo photo) {
+	public void removePhoto(Photo photo) throws IOException {
 		photos.remove(photo);
+		UserApp.writeApp(Photos.uapp);
 	}
 
-	public void setName(String name) {
+	public void setName(String name) throws IOException {
 		this.name = name;
+		UserApp.writeApp(Photos.uapp);
 	}
 
-	public void copyPhoto(Photo photo, Album album) {
+	public void copyPhoto(Photo photo, Album album) throws IOException {
 		album.addPhoto(photo);
 	}
 
-	public void movePhoto(Photo photo, Album album) {
+	public void movePhoto(Photo photo, Album album) throws IOException {
 		album.addPhoto(photo);
 		photos.remove(photo);
 	}

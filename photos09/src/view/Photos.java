@@ -22,10 +22,8 @@ public class Photos extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		File test = new File("./users.dat");
 		if (test.exists()) {
-			System.out.println("file exists");
 			uapp = UserApp.readApp();
 		} else {
-			System.out.println("file does not exist");
 			User stock = new User("Stock");
 			Album stockAlbum = new Album("Stock");
 			File folder = new File("StockImages");
