@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CurrentAlbumDisplayController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CurrentAlbumDisplayController">
    <children>
       <Text fx:id="textTitle" layoutX="178.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Album Title">
          <font>
@@ -27,6 +27,6 @@
       <Button fx:id="moveLeft" layoutX="134.0" layoutY="354.0" mnemonicParsing="false" onAction="#moveLeft" text="&lt;" />
       <Button fx:id="moveRight" layoutX="288.0" layoutY="354.0" mnemonicParsing="false" onAction="#moveRight" text="&gt;" />
       <TextField fx:id="date" layoutX="357.0" layoutY="210.0" prefHeight="26.0" prefWidth="97.0" promptText="Date" />
-      <Button layoutX="463.0" layoutY="241.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="97.0" text="Add/Edit/&#10;Remove Tags" textAlignment="CENTER" />
+      <Button layoutX="463.0" layoutY="241.0" mnemonicParsing="false" onAction="#editTag" prefHeight="80.0" prefWidth="97.0" text="Add/Edit/&#10;Remove Tags" textAlignment="CENTER" />
    </children>
 </AnchorPane>

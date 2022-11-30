@@ -181,6 +181,17 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}
 
 	}
+	
+	public void editTag(ActionEvent e) throws IOException {
+		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		passPhoto = photos.get(index);
+		Parent root = FXMLLoader.load(getClass().getResource("editTags.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 
 	public void copyMove(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
