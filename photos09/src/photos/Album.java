@@ -50,7 +50,6 @@ public class Album implements Serializable{
 
 	public String toString() {
 		return name;
-
 	}
 
 	public ArrayList<Photo> getPhotos() {

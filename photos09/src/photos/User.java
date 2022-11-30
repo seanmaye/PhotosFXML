@@ -23,7 +23,7 @@ public class User implements Serializable {
 		albums.add(album);
 	}
 
-	public void removePhoto(Album album) {
+	public void removeAlbum(Album album) {
 		albums.remove(album);
 	}
 
