@@ -7,24 +7,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class UserApp implements Serializable{
-	ObservableList<User> users;
+	ArrayList<User> users;
 	
 	public static final String storeDir = "dat";
 	public static final String storeFile = "users.dat";
 	private static final long serialVersionUID = 1L;
 	
-	public UserApp() {users = FXCollections.observableArrayList();}
+	public UserApp() {users = new ArrayList<User>();}
 	
 	//admin functions
 	public void addUser(User u) {users.add(u);}
 	public void deleteUser(User u) {users.remove(u);}
-	public ObservableList<User> listUsers() {
+	public ArrayList<User> listUsers() {
 		return users;
 	}
 	
 	//non-admin, get all data
-	public ObservableList<Album> listUserAlbums(String u){
-		ObservableList<Album> ret = FXCollections.observableArrayList();
+	public ArrayList<Album> listUserAlbums(String u){
+		ArrayList<Album> ret = new ArrayList<Album>();
 		for(User each: users) {
 			if (each.name.equals(u)) {
 				ret = each.albums;

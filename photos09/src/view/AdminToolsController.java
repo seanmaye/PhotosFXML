@@ -46,7 +46,7 @@ public class AdminToolsController implements Initializable {
 		
 		
 		
-		list = Photos.uapp.listUsers();
+		list =FXCollections.observableList(Photos.uapp.listUsers());
 		Collections.sort(list, Comparator.comparing(User::getName, String.CASE_INSENSITIVE_ORDER));
 		listView.setItems(list);
 	}

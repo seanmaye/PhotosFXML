@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 public class Album {
 	String name;
-	ObservableList<Photo> photos = FXCollections.observableArrayList();
+	ArrayList<Photo> photos = new ArrayList<Photo>();
 	int numPhotos = 0;
 	Date firstDate;
 	Date lastDate;
@@ -50,7 +50,7 @@ public class Album {
 
 	}
 
-	public ObservableList<Photo> getPhotos() {
+	public ArrayList<Photo> getPhotos() {
 		return photos;
 	}
 }

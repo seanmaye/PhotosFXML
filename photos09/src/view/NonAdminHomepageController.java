@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import photos.Album;
 import photos.Photo;
+import photos.User;
 
 public class NonAdminHomepageController implements Initializable {
 	
@@ -34,13 +35,14 @@ public class NonAdminHomepageController implements Initializable {
 	private Stage stage;
 	private Parent root;
 	public static Album passAlbum;
-	
+	private static ObservableList<Album> list = FXCollections.observableArrayList();
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		usernameText.setText("Logged in as: " + LoginScreenController.currentUser.toString());
 		Collections.sort(LoginScreenController.currentUser.getAlbumList(), Comparator.comparing(Album::getName, String.CASE_INSENSITIVE_ORDER));
 		if(LoginScreenController.currentUser.getAlbumList()!=null) {
-		listView.setItems(LoginScreenController.currentUser.getAlbumList());
+			list =FXCollections.observableList(LoginScreenController.currentUser.getAlbumList());	
+		listView.setItems(list);
 		}
 	}
 	public void newAlbum(ActionEvent e) throws IOException {

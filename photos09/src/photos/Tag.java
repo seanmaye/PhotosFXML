@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 
 public class Tag {
 	String name;
-	ObservableList<String> values = FXCollections.observableArrayList();
+	ArrayList<String> values = new ArrayList<String>();
 	
 	//only for "location"
 	public Tag(String name, String value) {
@@ -16,7 +16,7 @@ public class Tag {
 	}
 	
 	//for any other tag
-	public Tag(String name, ObservableList<String> values) {
+	public Tag(String name, ArrayList<String> values) {
 		this.name = name;
 		this.values = values;
 	}
@@ -25,7 +25,7 @@ public class Tag {
 		return name;
 	}
 	
-	public ObservableList<String> getTagValues() {
+	public ArrayList<String> getTagValues() {
 		return values;
 	}
 	

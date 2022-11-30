@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -40,11 +41,15 @@ public class CurrentAlbumDisplayController implements Initializable {
 	private TextField date;
 	@FXML
 	private Text textTitle;
+	@FXML
+	private Button slideshow;
 	private Scene scene;
 	private Stage stage;
 	private Parent root;
+	boolean isSlideshow;
 	ObservableList<ImageView> items = FXCollections.observableArrayList();
-	ObservableList<Photo> photos = NonAdminHomepageController.passAlbum.getPhotos();
+	ObservableList<Photo> photos = FXCollections.observableList(NonAdminHomepageController.passAlbum.getPhotos());
+
 	public static Photo passPhoto;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -113,6 +118,15 @@ public class CurrentAlbumDisplayController implements Initializable {
 		stage.show();
 		}
 
+	}
+	public void slideShow() {
+		if(isSlideshow==true) {
+			
+			isSlideshow=false;
+			slideshow.setText("Start Slideshow");
+		}else {
+			
+		}
 	}
 	
 	public void copyMove(ActionEvent e) throws IOException {

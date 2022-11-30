@@ -10,7 +10,7 @@ public class Photo {
 	String caption;
 	Date date;
 	Calendar c = Calendar.getInstance();
-	ObservableList<Tag> tags = FXCollections.observableArrayList();
+	ArrayList<Tag> tags = new ArrayList<Tag>();
 
 	//only call this when tagName.equals("location")
 	public Photo(Image image, String caption, String tagName, String tagValue) {
@@ -22,7 +22,7 @@ public class Photo {
 	}
 
 	//call this otherwise
-	public Photo(Image image, String caption, String tagName, ObservableList<String> tagValue) {
+	public Photo(Image image, String caption, String tagName, ArrayList<String> tagValue) {
 		this.image = image;
 		this.caption = caption;
 		tags.add(new Tag(tagName, tagValue));
@@ -46,7 +46,7 @@ public class Photo {
 		return date;
 	}
 
-	public ObservableList<Tag> getTags() {
+	public ArrayList<Tag> getTags() {
 		return tags;
 	}
 
@@ -54,7 +54,7 @@ public class Photo {
 		tags.add(new Tag(tagName, tagValue));
 	}
 
-	public void addTag(String tagName, ObservableList<String> tagValues) {
+	public void addTag(String tagName, ArrayList<String> tagValues) {
 		tags.add(new Tag(tagName, tagValues));
 	}
 

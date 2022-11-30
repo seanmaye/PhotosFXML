@@ -7,8 +7,8 @@ import javafx.collections.ObservableList;
 
 public class User {
 	String name;
-	ObservableList<Album> albums = FXCollections.observableArrayList();
-	ObservableList<String> tagNames = FXCollections.observableArrayList();
+	ArrayList<Album> albums = new ArrayList<Album>();
+	ArrayList<String> tagNames = new ArrayList<String>();
 
 	public User(String name) {
 		this.name = name;
@@ -36,11 +36,11 @@ public class User {
 		return name;
 	}
 
-	public ObservableList<Album> getAlbumList() {
+	public ArrayList<Album> getAlbumList() {
 		return albums;
 	}
 
-	public ObservableList<String> getTagNames() {
+	public ArrayList<String> getTagNames() {
 		return tagNames;
 	}
 
