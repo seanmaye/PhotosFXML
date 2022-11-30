@@ -12,7 +12,7 @@ public class Tag implements Serializable {
 	String name;
 	String value;
 	
-	//only for "location"
+
 	public Tag(String name, String value) {
 		this.name = name;
 		this.value=value;
@@ -29,6 +29,5 @@ public class Tag implements Serializable {
 	
 	public String toString() {
 		return name + " : " + value;
-		//name : [value, value, value]
 	}
 }

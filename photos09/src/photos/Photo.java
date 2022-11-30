@@ -1,10 +1,12 @@
 package photos;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 
 import javafx.scene.image.Image;
+import view.Photos;
 
 public class Photo implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -32,8 +34,9 @@ public class Photo implements Serializable {
 		return caption;
 	}
 
-	public void setCaption(String caption) {
+	public void setCaption(String caption) throws IOException {
 		this.caption = caption;
+		UserApp.writeApp(Photos.uapp);
 	}
 
 	public Date getDate() {
@@ -44,12 +47,14 @@ public class Photo implements Serializable {
 		return tags;
 	}
 
-	public void addTag(String tagName, String tagValue) {
+	public void addTag(String tagName, String tagValue) throws IOException {
 		tags.add(new Tag(tagName, tagValue));
+		UserApp.writeApp(Photos.uapp);
 	}
 
-	public void deleteTag(Tag tag) {
+	public void deleteTag(Tag tag) throws IOException {
 		tags.remove(tag);
+		UserApp.writeApp(Photos.uapp);
 	}
 
 }

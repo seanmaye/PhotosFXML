@@ -1,10 +1,12 @@
 package photos;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import view.Photos;
 
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -19,20 +21,23 @@ public class User implements Serializable {
 		tagNames.add("person");
 	}
 
-	public void addAlbum(Album album) {
+	public void addAlbum(Album album) throws IOException {
 		albums.add(album);
+		UserApp.writeApp(Photos.uapp);
 	}
 
-	public void removeAlbum(Album album) {
+	public void removeAlbum(Album album) throws IOException {
 		albums.remove(album);
+		UserApp.writeApp(Photos.uapp);
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void renameAlbum(Album album, String name) {
+	public void renameAlbum(Album album, String name) throws IOException {
 		album.name = name;
+		UserApp.writeApp(Photos.uapp);
 	}
 
 	public String toString() {
@@ -49,7 +54,7 @@ public class User implements Serializable {
 
 	// tagName list needs to be kept in user. Call this method every time after
 	// you add a new tag so that it can check if it is already in the list
-	public void addTagName(String tagName) {
+	public void addTagName(String tagName) throws IOException {
 		boolean in = false;
 		for (Album a : albums) {
 			for (Photo p : a.photos) {
@@ -62,6 +67,7 @@ public class User implements Serializable {
 		}
 		if (in == false) {
 			tagNames.add(tagName);
+			UserApp.writeApp(Photos.uapp);
 		}
 	}
 }
