@@ -25,13 +25,6 @@ public class Photo implements Serializable {
 	}
 
 	//call this otherwise
-	public Photo(Image image, String caption, String tagName, ArrayList<String> tagValue) {
-		this.image = image;
-		this.caption = caption;
-		tags.add(new Tag(tagName, tagValue));
-		c.set(Calendar.MILLISECOND, 0);
-		date = c.getTime();
-	}
 
 	public Image getImage() {
 		return image;
@@ -57,9 +50,7 @@ public class Photo implements Serializable {
 		tags.add(new Tag(tagName, tagValue));
 	}
 
-	public void addTag(String tagName, ArrayList<String> tagValues) {
-		tags.add(new Tag(tagName, tagValues));
-	}
+
 
 	public void deleteTag(Tag tag) {
 		tags.remove(tag);
