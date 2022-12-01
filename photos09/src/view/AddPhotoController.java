@@ -124,6 +124,13 @@ public class AddPhotoController implements Initializable {
 
 	public void addPhoto(ActionEvent e) throws IOException {
 		Image image = photoView.getImage();
+		if(image==null|| (valueField.getText().isBlank()&&nameField.getSelectionModel().getSelectedItem()!=null)) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Invalid Input");
+			alert.showAndWait();
+			return;
+		}
 		String tagName = nameField.getSelectionModel().getSelectedItem();
 		String caption = captionField.getText();
 		

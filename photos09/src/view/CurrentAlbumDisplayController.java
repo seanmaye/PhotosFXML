@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -156,7 +157,7 @@ public class CurrentAlbumDisplayController implements Initializable {
 	}
 
 	public void moveRight() {
-		if(currentPhotoIndex!=photos.size()-1) {
+		if(!thumbnails.getItems().isEmpty() && currentPhotoIndex!=photos.size()-1) {
 			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
 			currentPhotoIndex++;
 			selectionModel.select(currentPhotoIndex);
@@ -179,7 +180,7 @@ public class CurrentAlbumDisplayController implements Initializable {
 	}
 
 	public void moveLeft() {
-		if(currentPhotoIndex!=0) {
+		if(!thumbnails.getItems().isEmpty() && currentPhotoIndex!=0) {
 			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
 			currentPhotoIndex--;
 			selectionModel.select(currentPhotoIndex);
@@ -202,6 +203,13 @@ public class CurrentAlbumDisplayController implements Initializable {
 	}
 	public void recaption(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		if (index == -1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Photo not selected");
+			alert.showAndWait();
+			return;
+		}
 		currentPhotoIndex=index;
 		TextInputDialog td = new TextInputDialog("enter any text");
 
@@ -242,6 +250,7 @@ public class CurrentAlbumDisplayController implements Initializable {
 			alert.setTitle("ERROR");
 			alert.setContentText("Photo not selected");
 			alert.showAndWait();
+			return;
 		} else {
 			passPhoto = photos.get(index);
 			Parent root = FXMLLoader.load(getClass().getResource("copyMovePhoto.fxml"));

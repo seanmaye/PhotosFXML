@@ -20,10 +20,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import photos.Album;
@@ -59,9 +61,18 @@ public class AdminToolsController implements Initializable {
 		td.setHeaderText("enter your name");
 
 		Optional<String> result = td.showAndWait();
-
+		if(result.isEmpty()) {
+			return;
+		}
 		User newUser = new User(result.get());
-		
+		for(User user: Photos.uapp.listUsers()) {
+			user.getName().equals(newUser.getName());
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Duplicate Name");
+			alert.showAndWait();
+			return;
+		}
 		Photos.uapp.addUser(newUser);
 		UserApp.writeApp(Photos.uapp);
 

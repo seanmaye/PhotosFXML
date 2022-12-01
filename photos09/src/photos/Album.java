@@ -52,6 +52,8 @@ public class Album implements Serializable{
 	 */
 	public void removePhoto(Photo photo) throws IOException {
 		photos.remove(photo);
+		firstDate = photos.get(0).date;
+		lastDate = photos.get(photos.size() - 1).date;
 		UserApp.writeApp(Photos.uapp);
 	}
 
@@ -73,6 +75,10 @@ public class Album implements Serializable{
 	 */
 	public void copyPhoto(Photo photo, Album album) throws IOException {
 		album.addPhoto(photo);
+		firstDate = photos.get(0).date;
+		lastDate = photos.get(photos.size() - 1).date;
+		album.firstDate = album.photos.get(0).date;
+		album.lastDate = album.photos.get(photos.size() - 1).date;
 		UserApp.writeApp(Photos.uapp);
 	}
 
@@ -85,6 +91,10 @@ public class Album implements Serializable{
 	public void movePhoto(Photo photo, Album album) throws IOException {
 		album.addPhoto(photo);
 		photos.remove(photo);
+		firstDate = photos.get(0).date;
+		lastDate = photos.get(photos.size() - 1).date;
+		album.firstDate = album.photos.get(0).date;
+		album.lastDate = album.photos.get(photos.size() - 1).date;
 		UserApp.writeApp(Photos.uapp);
 	}
 

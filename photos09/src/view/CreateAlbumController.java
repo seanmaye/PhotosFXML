@@ -24,6 +24,9 @@ public class CreateAlbumController {
 	
 	public void createAlbum(ActionEvent e) throws IOException {
 		Album newAlbum = new Album(albumField.getText());
+		if(albumField.getText().isBlank()) {
+			return;
+		}
 		for(Album album: LoginScreenController.currentUser.getAlbumList()) {
 			if(album.getName().equals(newAlbum.getName())) {
 				Alert alert = new Alert(AlertType.ERROR);

@@ -25,13 +25,13 @@
       </Text>
       <TextField fx:id="queryField" layoutX="15.0" layoutY="175.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Query" />
       <Button layoutX="32.0" layoutY="215.0" mnemonicParsing="false" onAction="#search" prefHeight="45.0" prefWidth="116.0" text="Search By Query" />
-      <DatePicker fx:id="startDatePicker" layoutX="213.0" layoutY="175.0" />
+      <DatePicker fx:id="startDatePicker" editable="false" layoutX="213.0" layoutY="175.0" />
       <Text layoutX="234.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search By Date">
          <font>
             <Font size="20.0" />
          </font>
       </Text>
-      <DatePicker fx:id="endDatePicker" layoutX="213.0" layoutY="246.0" />
+      <DatePicker fx:id="endDatePicker" editable="false" layoutX="213.0" layoutY="246.0" />
       <Text layoutX="211.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date:">
          <font>
             <Font size="15.0" />

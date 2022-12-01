@@ -119,10 +119,10 @@ public class EditTagsController implements Initializable {
 	public void addTag(ActionEvent e) throws IOException {
 		boolean flag = false;
 		int index = tagNameListView.getSelectionModel().getSelectedIndex();
-		if (index == -1) {
+		if (index == -1||(valueField.getText().isBlank()&&tagNameListView.getSelectionModel().getSelectedItem()!=null)) {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("ERROR");
-			alert.setContentText("Photo not selected");
+			alert.setContentText("Invalid Input");
 			alert.showAndWait();
 			return;
 		}

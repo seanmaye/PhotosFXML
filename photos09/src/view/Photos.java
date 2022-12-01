@@ -24,13 +24,13 @@ public class Photos extends Application {
 		if (test.exists()) {
 			uapp = UserApp.readApp();
 		} else {
-			User stock = new User("Stock");
+			User stock = new User("stock");
 			Album stockAlbum = new Album("Stock");
 			File folder = new File("StockImages");
 			List<String> fileList = listFileNames(folder);
 			for (int i = 0; i < fileList.size(); i++) {
 				File file = new File("StockImages/" + fileList.get(i));
-				Photo photo = new Photo(file, "This is stock", "Stock", "stock");
+				Photo photo = new Photo(file, "Stock Photo", "Stock", "stock");
 				stockAlbum.addPhoto(photo);
 			}
 			stock.addAlbum(stockAlbum);

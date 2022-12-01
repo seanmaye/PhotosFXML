@@ -11,10 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import photos.Album;
 
 public class CurrentAlbumToolsController implements Initializable {
 	
@@ -42,6 +45,21 @@ public class CurrentAlbumToolsController implements Initializable {
 
 	}
 	public void rename(ActionEvent e) throws IOException {
+		if(albumnameField.getText().isBlank()) {
+			albumnameField.setText(NonAdminHomepageController.passAlbum.getName());
+			return;
+		}
+		Album newAlbum = new Album(albumnameField.getText());
+		for(Album album: LoginScreenController.currentUser.getAlbumList()) {
+			if(album.getName().equals(newAlbum.getName())) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("ERROR");
+				alert.setContentText("Duplicate name");
+				alert.showAndWait();
+				albumnameField.setText(NonAdminHomepageController.passAlbum.getName());
+				return;
+			}
+		}
 		NonAdminHomepageController.passAlbum.setName(albumnameField.getText());
 		titleText.setText(NonAdminHomepageController.passAlbum.getName()+" Tools");
 		albumnameField.setText(NonAdminHomepageController.passAlbum.getName());

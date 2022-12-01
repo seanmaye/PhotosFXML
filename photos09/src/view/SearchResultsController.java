@@ -45,6 +45,8 @@ public class SearchResultsController {
 	ObservableList<ImageView> items = FXCollections.observableArrayList();
 
 	public void goBack(ActionEvent e) throws IOException {
+		startDatePicker.setEditable(false);
+		endDatePicker.setEditable(false);
 		Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -79,9 +81,23 @@ public class SearchResultsController {
 		for (Photo p : matches) {
 			newAlbum.addPhoto(p);
 		}
+		Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
+		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public void searchByDate(ActionEvent e) throws IOException {
+		if(startDatePicker.getValue()==null || endDatePicker.getValue()==null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Invalid Input");
+			alert.showAndWait();
+			return;
+		}
+		matches = FXCollections.observableArrayList();
+		items = FXCollections.observableArrayList();
 		LocalDate localDate1 = startDatePicker.getValue();
 		Instant instant1 = Instant.from(localDate1.atStartOfDay(ZoneId.systemDefault()));
 		Date startDate = Date.from(instant1);
@@ -90,11 +106,11 @@ public class SearchResultsController {
 		Instant instant2 = Instant.from(localDate2.atStartOfDay(ZoneId.systemDefault()));
 		Date endDate = Date.from(instant2);
 
-		System.out.println(startDate + " " + endDate);
+		
 
 		for (Album a : Photos.uapp.listUserAlbums(LoginScreenController.currentUser.getName())) {
 			for (Photo p : a.getPhotos()) {
-				System.out.println(p.getDate());
+				
 				if (p.getDate().after(startDate) && p.getDate().before(endDate)) {
 					if (matches.contains(p)) {
 						continue;
@@ -117,10 +133,26 @@ public class SearchResultsController {
 	}
 
 	public void search(ActionEvent e) throws IOException {
+		matches = FXCollections.observableArrayList();
+		items = FXCollections.observableArrayList();
+		if(queryField.getText().isBlank()) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Invalid Input");
+			alert.showAndWait();
+			return;
+		}
 		String query = queryField.getText();
 		String[] tokens = query.split(" ");
 		if (tokens.length == 1) {
 			String[] split = query.split("=");
+			if(split.length<2) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("ERROR");
+				alert.setContentText("Invalid Input");
+				alert.showAndWait();
+				return;
+			}
 			String tagName = split[0];
 			String tagValue = split[1];
 			Tag compare = new Tag(tagName, tagValue);

@@ -15,8 +15,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import photos.Album;
 import photos.User;
@@ -53,6 +55,13 @@ public class CopyMovePhotoController implements Initializable {
 	}
 
 	public void copy(ActionEvent e) throws IOException {
+		if(listView.getSelectionModel().getSelectedItem()==null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("No Album selected");
+			alert.showAndWait();
+			return;
+		}
 		Album toAdd = listView.getSelectionModel().getSelectedItem();
 		NonAdminHomepageController.passAlbum.copyPhoto(CurrentAlbumDisplayController.passPhoto, toAdd);
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
@@ -64,6 +73,13 @@ public class CopyMovePhotoController implements Initializable {
 	}
 
 	public void move(ActionEvent e) throws IOException {
+		if(listView.getSelectionModel().getSelectedItem()==null) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("No Album selected");
+			alert.showAndWait();
+			return;
+		}
 		Album toAdd = listView.getSelectionModel().getSelectedItem();
 		NonAdminHomepageController.passAlbum.movePhoto(CurrentAlbumDisplayController.passPhoto, toAdd);
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
