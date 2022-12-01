@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls the login screen
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.IOException;
 
@@ -21,6 +27,12 @@ public class LoginScreenController {
 	private Parent root;
 	public static User currentUser;
 
+	/**
+	 * If user is non-admin, finds user (and their data) in list of users and sends them to their homepage.
+	 * If user is admin, sends them to the admin homepage.
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void login(ActionEvent e) throws IOException {
 		for(User user : Photos.uapp.listUsers()) {
 			if(user.getName().equals(usernameField.getText())) {

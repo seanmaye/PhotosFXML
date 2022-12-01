@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls screen to add a photo
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.File;
 import java.io.IOException;
@@ -53,6 +59,11 @@ public class AddPhotoController implements Initializable {
 	ObservableList<String> items = FXCollections.observableArrayList();
 
 	@Override
+	/**
+	 * Displays fields for user to input photo and photo info
+	 * @param arg0 for FXML functionality
+	 * @param arg1 for FXML functionality
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		LoginScreenController.currentUser.getTagNames().sort(String::compareToIgnoreCase);
 		items = FXCollections.observableList(LoginScreenController.currentUser.getTagNames());
@@ -60,6 +71,11 @@ public class AddPhotoController implements Initializable {
 
 	}
 
+	/**
+	 * If the user wants to return to the album, redirects them to the album display page
+	 * @param e
+	 * @throws IOException
+	 */
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -69,6 +85,11 @@ public class AddPhotoController implements Initializable {
 
 	}
 
+	/**
+	 * Allows user to choose the image they want to upload
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void uploadPhoto(ActionEvent e) throws IOException {
 		// make
 		FileChooser fileChooser = new FileChooser();
@@ -89,6 +110,11 @@ public class AddPhotoController implements Initializable {
 		}
 	}
 
+	/**
+	 * Creates new tag name based on user input
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void newType(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
 
@@ -122,6 +148,11 @@ public class AddPhotoController implements Initializable {
 
 	}
 
+	/**
+	 * Creates Photo object and adds to album, then returns user to the album display page
+	 * @param e
+	 * @throws IOException
+	 */
 	public void addPhoto(ActionEvent e) throws IOException {
 		Image image = photoView.getImage();
 		if(image==null|| (valueField.getText().isBlank()&&nameField.getSelectionModel().getSelectedItem()!=null)) {

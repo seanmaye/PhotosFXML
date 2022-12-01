@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls page to create an album
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.IOException;
 
@@ -22,6 +28,11 @@ public class CreateAlbumController {
 	private Stage stage;
 	private Parent root;
 	
+	/**
+	 * Creates album (no duplicates) from user input, then sends them back to homepage
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void createAlbum(ActionEvent e) throws IOException {
 		Album newAlbum = new Album(albumField.getText());
 		if(albumField.getText().isBlank()) {
@@ -45,6 +56,12 @@ public class CreateAlbumController {
 			stage.show();
 
 	}
+	
+	/**
+	 * If the user wants to return to homepage, redirects to the homepage
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("nonAdminHomepage.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();

@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls non-admin homepage
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +42,13 @@ public class NonAdminHomepageController implements Initializable {
 	private Parent root;
 	public static Album passAlbum;
 	private static ObservableList<Album> list = FXCollections.observableArrayList();
+	
 	@Override
+	/**
+	 * Displays list of albums belonging to the current user
+	 * @param arg0 for FXML functionality
+	 * @param arg1 for FXML functionality
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		usernameText.setText("Logged in as: " + LoginScreenController.currentUser.toString());
 		Collections.sort(LoginScreenController.currentUser.getAlbumList(), Comparator.comparing(Album::getName, String.CASE_INSENSITIVE_ORDER));
@@ -45,22 +57,38 @@ public class NonAdminHomepageController implements Initializable {
 		listView.setItems(list);
 		}
 	}
+	
+	/**
+	 * If the user wants to create a new album, redirects them to the page to create an album
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void newAlbum(ActionEvent e) throws IOException {
 			Parent root = FXMLLoader.load(getClass().getResource("createAlbum.fxml"));
 			stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
-
 	}
+	
+	/**
+	 * If the user wants to search their photos, redirects them to the page to search
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void search(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("searchResults.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-
-}
+	}
+	
+	/**
+	 * If the user wants to look at an album, redirects them to the page with more album options for selected album
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void select(ActionEvent e) throws IOException {
 		if(listView.getSelectionModel().getSelectedItem()==null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -75,16 +103,18 @@ public class NonAdminHomepageController implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 		}
-		
-
 }
+	/**
+	 * If the user wants to logout, logs them out and redirects to the login page
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void logOut(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-
 }
 	
 }

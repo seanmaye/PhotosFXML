@@ -1,4 +1,10 @@
 package view;
+/**
+ * Launches Photos app
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,6 +25,11 @@ public class Photos extends Application {
 	public static UserApp uapp = new UserApp();
 
 	@Override
+	/**
+	 * If the users.dat file that stores our data already exists, read from it.
+	 * If not, this is the first time running the app. Create stock user and write it to the file.
+	 * Then send user to the login page.
+	 */
 	public void start(Stage primaryStage) throws Exception {
 		File test = new File("./users.dat");
 		if (test.exists()) {
@@ -43,6 +54,12 @@ public class Photos extends Application {
 			primaryStage.show();
 	}
 
+	/**
+	 * Takes a folder and lists all files in it
+	 * @param folder folder to search
+	 * @return List of file names in given folder
+	 * @throws NullPointerException
+	 */
 	private List<String> listFileNames(File folder) throws NullPointerException {
 		List<String> list = new ArrayList<>();
 
@@ -56,6 +73,10 @@ public class Photos extends Application {
 		return list;
 	}
 
+	/**
+	 * launches program
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

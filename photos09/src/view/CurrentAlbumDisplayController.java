@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls page for album display
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,6 +65,11 @@ public class CurrentAlbumDisplayController implements Initializable {
 	public static Photo passPhoto;
 
 	@Override
+	/**
+	 * displays photos in album, with first photo selected and displayed with info
+	 * @param arg0 for FXML functionality
+	 * @param arg1 for FXML functionality
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		date.setEditable(false);
 		tags.setEditable(false);
@@ -92,6 +103,11 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}
 	}
 
+	/**
+	 * displays selected photo
+	 * @param e gets Scene from where an action takes place
+	 * @throws IOException
+	 */
 	public void displayPhoto(MouseEvent e) throws IOException {
 		ImageView imageView = thumbnails.getSelectionModel().getSelectedItem();
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
@@ -120,6 +136,11 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}
 	}
 
+	/**
+	 * If user wants to return to album tools, redirects them to album tools page
+	 * @param e
+	 * @throws IOException
+	 */
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumTools.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -129,6 +150,11 @@ public class CurrentAlbumDisplayController implements Initializable {
 
 	}
 
+	/**
+	 * If the user wants to add a photo to the album, redirects them to a page to enter required information
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void addPhoto(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("addphoto.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -138,6 +164,11 @@ public class CurrentAlbumDisplayController implements Initializable {
 
 	}
 
+	/**
+	 * Deletes photo the user has selected and reloads display
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void removePhoto(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		if (index == -1) {
@@ -156,6 +187,9 @@ public class CurrentAlbumDisplayController implements Initializable {
 
 	}
 
+	/**
+	 * Displays the next photo in the list
+	 */
 	public void moveRight() {
 		if(!thumbnails.getItems().isEmpty() && currentPhotoIndex!=photos.size()-1) {
 			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
@@ -179,6 +213,9 @@ public class CurrentAlbumDisplayController implements Initializable {
 		
 	}
 
+	/**
+	 * Displays the previous photo in the list
+	 */
 	public void moveLeft() {
 		if(!thumbnails.getItems().isEmpty() && currentPhotoIndex!=0) {
 			SelectionModel<ImageView> selectionModel = thumbnails.getSelectionModel();
@@ -201,6 +238,12 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}
 
 	}
+	
+	/**
+	 * Recaptions selected photo based on user input
+	 * @param e
+	 * @throws IOException
+	 */
 	public void recaption(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		if (index == -1) {
@@ -225,6 +268,12 @@ public class CurrentAlbumDisplayController implements Initializable {
 		photos.get(currentPhotoIndex).setCaption(text);
 		caption.setText(text);
 	}
+	
+	/**
+	 * If the user wants to change the tags for selected photo, redirects them to page with more tag functionality
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void editTag(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		if (index == -1) {
@@ -243,6 +292,11 @@ public class CurrentAlbumDisplayController implements Initializable {
 	}
 	
 
+	/**
+	 * If user wants to copy or move selected photo to another album, redirects them to page to do so
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void copyMove(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		if (index == -1) {

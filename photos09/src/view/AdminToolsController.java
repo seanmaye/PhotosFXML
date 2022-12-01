@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls admin homepage
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.File;
 import java.io.IOException;
@@ -44,17 +50,22 @@ public class AdminToolsController implements Initializable {
 	private static ObservableList<User> list = FXCollections.observableArrayList();
 	
 	@Override
+	/**
+	 * Displays list of users sorted alphabetically (case insensitive)
+	 * @param arg0 for FXML functionality
+	 * @param arg1 for FXML functionality
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		
-		
 		list =FXCollections.observableList(Photos.uapp.listUsers());
 		Collections.sort(list, Comparator.comparing(User::getName, String.CASE_INSENSITIVE_ORDER));
 		listView.setItems(list);
 	}
 
 	
-
+	/**
+	 * Creates a user from admin input and writes to file
+	 * @param e get Scene where an action has taken place
+	 */
 	public void createUser(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
 
@@ -84,6 +95,11 @@ public class AdminToolsController implements Initializable {
 
 	}
 	
+	/**
+	 * Deletes user that admin has selected and writes to file
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void deleteUser(ActionEvent e) throws IOException {
 		User toDelete = listView.getSelectionModel().getSelectedItem();	
 		Photos.uapp.deleteUser(toDelete);
@@ -96,6 +112,10 @@ public class AdminToolsController implements Initializable {
 
 	}
 
+	/**
+	 * Returns to login page
+	 * @param e get Scene where an action has taken place
+	 */
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -105,6 +125,10 @@ public class AdminToolsController implements Initializable {
 
 	}
 	
+	/**
+	 * Returns ObservableList of users
+	 * @return ObserveableList of users
+	 */
 	public static ObservableList<User> getUserList() {
 		return list;
 	}

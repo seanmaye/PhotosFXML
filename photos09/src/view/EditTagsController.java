@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls screen to edit tags
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.File;
 import java.io.IOException;
@@ -55,6 +61,11 @@ public class EditTagsController implements Initializable {
 	ObservableList<String> items2 = FXCollections.observableArrayList();
 
 	@Override
+	/**
+	 * Displays current tags for the photo as well as list of preset tags for the user
+	 * @param arg0 for FXML functionality
+	 * @param arg1 for FXML functionality
+	 */
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		items = FXCollections.observableList(CurrentAlbumDisplayController.passPhoto.getTags());
 		currentTagsListView.setItems(items);
@@ -63,6 +74,11 @@ public class EditTagsController implements Initializable {
 		tagNameListView.setItems(items2);
 	}
 
+	/**
+	 * Deletes selected tag from photo and reloads tag page
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void deleteTag(ActionEvent e) throws IOException {
 		Tag toDelete = currentTagsListView.getSelectionModel().getSelectedItem();
 		CurrentAlbumDisplayController.passPhoto.deleteTag(toDelete);
@@ -74,6 +90,11 @@ public class EditTagsController implements Initializable {
 
 	}
 	
+	/**
+	 * If the user wants to return to album, redirects them to album display page
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void goBack(ActionEvent e) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource("currentAlbumDisplay.fxml"));
 		stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
@@ -84,6 +105,11 @@ public class EditTagsController implements Initializable {
 	}
 
 	
+	/**
+	 * Creates new tag type based on user input
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void newType(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
 
@@ -116,6 +142,11 @@ public class EditTagsController implements Initializable {
 
 	}
 
+	/**
+	 * Adds tag to photo
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void addTag(ActionEvent e) throws IOException {
 		boolean flag = false;
 		int index = tagNameListView.getSelectionModel().getSelectedIndex();

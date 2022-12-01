@@ -1,4 +1,10 @@
 package view;
+/**
+ * Controls page for searching
+ * @author Vanessa Chin
+ * @author Sean Maye
+ * @version 1.0
+ */
 
 import java.io.IOException;
 import java.time.Instant;
@@ -44,6 +50,11 @@ public class SearchResultsController {
 	private ObservableList<Photo> matches = FXCollections.observableArrayList();
 	ObservableList<ImageView> items = FXCollections.observableArrayList();
 
+	/**
+	 * If the user wants to return to the homepage, redirects them to the homepage
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void goBack(ActionEvent e) throws IOException {
 		startDatePicker.setEditable(false);
 		endDatePicker.setEditable(false);
@@ -55,6 +66,11 @@ public class SearchResultsController {
 
 	}
 
+	/**
+	 * Creates new album based on search results, then returns user to the homepage
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void createAlbum(ActionEvent e) throws IOException {
 		TextInputDialog td = new TextInputDialog("enter any text");
 
@@ -88,6 +104,11 @@ public class SearchResultsController {
 		stage.show();
 	}
 
+	/**
+	 * Searches photos by date and displays search results
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void searchByDate(ActionEvent e) throws IOException {
 		if(startDatePicker.getValue()==null || endDatePicker.getValue()==null) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -132,6 +153,11 @@ public class SearchResultsController {
 		listView.setItems(items);
 	}
 
+	/**
+	 * Searches photos by tag and displays search results
+	 * @param e get Scene where an action has taken place
+	 * @throws IOException
+	 */
 	public void search(ActionEvent e) throws IOException {
 		matches = FXCollections.observableArrayList();
 		items = FXCollections.observableArrayList();
