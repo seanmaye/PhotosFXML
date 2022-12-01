@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -199,7 +200,23 @@ public class CurrentAlbumDisplayController implements Initializable {
 		}
 
 	}
-	
+	public void recaption(ActionEvent e) throws IOException {
+		int index = thumbnails.getSelectionModel().getSelectedIndex();
+		currentPhotoIndex=index;
+		TextInputDialog td = new TextInputDialog("enter any text");
+
+		td.setHeaderText("Enter new caption");
+
+		Optional<String> result = td.showAndWait();
+		String text;
+		if(result.isEmpty()) {
+			return;
+		}else {
+			text = result.get();
+		}
+		photos.get(currentPhotoIndex).setCaption(text);
+		caption.setText(text);
+	}
 	public void editTag(ActionEvent e) throws IOException {
 		int index = thumbnails.getSelectionModel().getSelectedIndex();
 		if (index == -1) {

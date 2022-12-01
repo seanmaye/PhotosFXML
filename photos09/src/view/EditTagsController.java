@@ -118,6 +118,15 @@ public class EditTagsController implements Initializable {
 
 	public void addTag(ActionEvent e) throws IOException {
 		boolean flag = false;
+		int index = tagNameListView.getSelectionModel().getSelectedIndex();
+		if (index == -1) {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setContentText("Photo not selected");
+			alert.showAndWait();
+			return;
+		}
+	
 		for(Tag t: CurrentAlbumDisplayController.passPhoto.getTags()) {
 			if(t.getTagName().equals(tagNameListView.getSelectionModel().getSelectedItem()) && t.getTagValue().equals(valueField.getText())) {
 				Alert alert = new Alert(AlertType.ERROR);
@@ -126,10 +135,9 @@ public class EditTagsController implements Initializable {
 				alert.showAndWait();
 				flag=true;
 				
-				
 			}
 		}
-		if(flag=false) {
+		if(!flag) {
 				CurrentAlbumDisplayController.passPhoto.addTag(tagNameListView.getSelectionModel().getSelectedItem(), valueField.getText());
 				
 				items = FXCollections.observableList(CurrentAlbumDisplayController.passPhoto.getTags());
