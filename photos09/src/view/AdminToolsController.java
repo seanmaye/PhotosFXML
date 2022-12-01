@@ -76,14 +76,6 @@ public class AdminToolsController implements Initializable {
 			return;
 		}
 		User newUser = new User(result.get());
-		for(User user: Photos.uapp.listUsers()) {
-			user.getName().equals(newUser.getName());
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("ERROR");
-			alert.setContentText("Duplicate Name");
-			alert.showAndWait();
-			return;
-		}
 		Photos.uapp.addUser(newUser);
 		UserApp.writeApp(Photos.uapp);
 
